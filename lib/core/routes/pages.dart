@@ -9,14 +9,14 @@ import 'routes.dart';
 final GoRouter router = GoRouter(
   //initialLocation: "/homepage",
   routes: <GoRoute>[
-    GoRoute(
-      name: AppRoutes.HOME,
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) => const Home(),
-    ),
+    //GoRoute(
+    //  name: AppRoutes.HOME,
+    //  path: '/',
+    //  builder: (BuildContext context, GoRouterState state) => const Home(),
+    //),
     GoRoute(
       name: AppRoutes.HOMEPAGE,
-      path: '/homepage',
+      path: '/',
       builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
     GoRoute(

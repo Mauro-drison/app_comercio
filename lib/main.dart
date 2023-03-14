@@ -1,4 +1,6 @@
 import 'package:app_comercio/core/routes/pages.dart';
+import 'package:app_comercio/core/routes/routes.dart';
+import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,20 +8,30 @@ void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     //final router = ref.watch(routerprovider);
+    final router = ref.watch(routerProvider);
     return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'App Productos',
-        routeInformationProvider: router.routeInformationProvider,
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate
-
-        /*
+      debugShowCheckedModeBanner: false,
+      title: 'App Productos',
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      theme: ThemeData(
+        //Se indica que el tema tiene un brillo luminoso/claro
+        brightness: Brightness.light,
+        primarySwatch: Colors.blue,
+      ),
+      darkTheme: ThemeData(
+        //Se indica que el tema tiene un brillo oscuro
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+      ),
+      /*
         theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch(
                     brightness: Brightness.dark, primarySwatch: Colors.purple)
@@ -30,7 +42,7 @@ class MyApp extends StatelessWidget {
             cardColor: Colors.purple),
         //home: const HomePage()
         */
-        );
+    );
     //home: const Home());
   }
 }

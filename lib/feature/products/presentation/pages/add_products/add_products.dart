@@ -1,7 +1,8 @@
+import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_comercio/utils/utils.dart' as utils;
 
@@ -34,6 +35,13 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
     return Scaffold(
       appBar: AppBar(
         title: Text("AGREGAR PRODUCTOS"),
+        leading: IconButton(
+          tooltip: 'Previous choice',
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            ref.read(routeProvider.notifier).homepage();
+          },
+        ),
       ),
       body: Container(
         child: Padding(

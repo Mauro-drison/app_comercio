@@ -1,11 +1,14 @@
 import 'dart:developer';
 
 import 'package:app_comercio/core/routes/routes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:go_router/go_router.dart';
+
+import '../homepage/widgets/drawer_home.dart';
 
 class Home extends ConsumerWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,7 +22,9 @@ class Home extends ConsumerWidget {
         title: const Text("Gestión de Productos"),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      drawer: const Drawer(),
+      drawer: const Drawer(
+        child: DrawerHome(),
+      ),
       body: Center(
         child: Column(
           children: [
