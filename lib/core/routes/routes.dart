@@ -1,5 +1,6 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/presentation/pages/add_products/add_products.dart';
+import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
@@ -58,6 +59,11 @@ class RouterNotifier extends ChangeNotifier {
       if (areWeLoggingIn) return '/add_products';
       print("-------------ADD-----------------");
     }
+
+    if (user.nameR == "route3") {
+      if (areWeLoggingIn) return '/carrito_products';
+      print("-------------carr-----------------");
+    }
     // There's no need for a redirect at this point.
     return null;
   }
@@ -72,6 +78,11 @@ class RouterNotifier extends ChangeNotifier {
           name: "add_products",
           path: '/add_products',
           builder: (context, _) => AgregarProductos(),
+        ),
+        GoRoute(
+          name: "carrito_products",
+          path: '/carrito_products',
+          builder: (context, _) => const CarritoProducts(),
         ),
       ];
 }

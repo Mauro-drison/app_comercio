@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProductState {
   List<Product> get product => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  List<Product> get productCarrito => throw _privateConstructorUsedError;
+  double get totalCompra => throw _privateConstructorUsedError;
+  bool get estadoQuantity => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductStateCopyWith<ProductState> get copyWith =>
@@ -30,7 +33,12 @@ abstract class $ProductStateCopyWith<$Res> {
           ProductState value, $Res Function(ProductState) then) =
       _$ProductStateCopyWithImpl<$Res, ProductState>;
   @useResult
-  $Res call({List<Product> product, bool isLoading});
+  $Res call(
+      {List<Product> product,
+      bool isLoading,
+      List<Product> productCarrito,
+      double totalCompra,
+      bool estadoQuantity});
 }
 
 /// @nodoc
@@ -48,6 +56,9 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
   $Res call({
     Object? product = null,
     Object? isLoading = null,
+    Object? productCarrito = null,
+    Object? totalCompra = null,
+    Object? estadoQuantity = null,
   }) {
     return _then(_value.copyWith(
       product: null == product
@@ -57,6 +68,18 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      productCarrito: null == productCarrito
+          ? _value.productCarrito
+          : productCarrito // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      totalCompra: null == totalCompra
+          ? _value.totalCompra
+          : totalCompra // ignore: cast_nullable_to_non_nullable
+              as double,
+      estadoQuantity: null == estadoQuantity
+          ? _value.estadoQuantity
+          : estadoQuantity // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -70,7 +93,12 @@ abstract class _$$_ProductStateCopyWith<$Res>
       __$$_ProductStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Product> product, bool isLoading});
+  $Res call(
+      {List<Product> product,
+      bool isLoading,
+      List<Product> productCarrito,
+      double totalCompra,
+      bool estadoQuantity});
 }
 
 /// @nodoc
@@ -86,6 +114,9 @@ class __$$_ProductStateCopyWithImpl<$Res>
   $Res call({
     Object? product = null,
     Object? isLoading = null,
+    Object? productCarrito = null,
+    Object? totalCompra = null,
+    Object? estadoQuantity = null,
   }) {
     return _then(_$_ProductState(
       product: null == product
@@ -96,6 +127,18 @@ class __$$_ProductStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      productCarrito: null == productCarrito
+          ? _value._productCarrito
+          : productCarrito // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      totalCompra: null == totalCompra
+          ? _value.totalCompra
+          : totalCompra // ignore: cast_nullable_to_non_nullable
+              as double,
+      estadoQuantity: null == estadoQuantity
+          ? _value.estadoQuantity
+          : estadoQuantity // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -104,8 +147,13 @@ class __$$_ProductStateCopyWithImpl<$Res>
 
 class _$_ProductState extends _ProductState {
   const _$_ProductState(
-      {final List<Product> product = const [], this.isLoading = true})
+      {final List<Product> product = const [],
+      this.isLoading = true,
+      final List<Product> productCarrito = const [],
+      this.totalCompra = 0,
+      this.estadoQuantity = true})
       : _product = product,
+        _productCarrito = productCarrito,
         super._();
 
   final List<Product> _product;
@@ -120,10 +168,25 @@ class _$_ProductState extends _ProductState {
   @override
   @JsonKey()
   final bool isLoading;
+  final List<Product> _productCarrito;
+  @override
+  @JsonKey()
+  List<Product> get productCarrito {
+    if (_productCarrito is EqualUnmodifiableListView) return _productCarrito;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productCarrito);
+  }
+
+  @override
+  @JsonKey()
+  final double totalCompra;
+  @override
+  @JsonKey()
+  final bool estadoQuantity;
 
   @override
   String toString() {
-    return 'ProductState(product: $product, isLoading: $isLoading)';
+    return 'ProductState(product: $product, isLoading: $isLoading, productCarrito: $productCarrito, totalCompra: $totalCompra, estadoQuantity: $estadoQuantity)';
   }
 
   @override
@@ -133,12 +196,23 @@ class _$_ProductState extends _ProductState {
             other is _$_ProductState &&
             const DeepCollectionEquality().equals(other._product, _product) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._productCarrito, _productCarrito) &&
+            (identical(other.totalCompra, totalCompra) ||
+                other.totalCompra == totalCompra) &&
+            (identical(other.estadoQuantity, estadoQuantity) ||
+                other.estadoQuantity == estadoQuantity));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_product), isLoading);
+      runtimeType,
+      const DeepCollectionEquality().hash(_product),
+      isLoading,
+      const DeepCollectionEquality().hash(_productCarrito),
+      totalCompra,
+      estadoQuantity);
 
   @JsonKey(ignore: true)
   @override
@@ -149,13 +223,23 @@ class _$_ProductState extends _ProductState {
 
 abstract class _ProductState extends ProductState {
   const factory _ProductState(
-      {final List<Product> product, final bool isLoading}) = _$_ProductState;
+      {final List<Product> product,
+      final bool isLoading,
+      final List<Product> productCarrito,
+      final double totalCompra,
+      final bool estadoQuantity}) = _$_ProductState;
   const _ProductState._() : super._();
 
   @override
   List<Product> get product;
   @override
   bool get isLoading;
+  @override
+  List<Product> get productCarrito;
+  @override
+  double get totalCompra;
+  @override
+  bool get estadoQuantity;
   @override
   @JsonKey(ignore: true)
   _$$_ProductStateCopyWith<_$_ProductState> get copyWith =>

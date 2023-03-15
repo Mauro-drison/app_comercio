@@ -13,6 +13,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // ignore: unused_local_variable
     List<Product> dataProduct = ref.watch(productNotifierProvider).product;
     bool isLoading = ref.watch(productNotifierProvider).isLoading;
 

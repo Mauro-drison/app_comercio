@@ -1,5 +1,7 @@
 import 'package:app_comercio/core/routes/routes.dart';
 import 'package:app_comercio/core/routes/state_routes.dart';
+import 'package:app_comercio/core/services/notification_services.dart';
+import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -22,6 +24,7 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
 
   @override
   Widget build(BuildContext context) {
+    //var retro = ref.watch(productNotifierProvider.notifier).retro();
     //var route = ref.watch(routerProvider);
     return ListView(
       // Important: Remove any padding from the ListView.
@@ -38,7 +41,9 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
                 icon: const Icon(
                   Icons.account_circle_rounded,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showNotificacion();
+                },
                 iconSize: 70.0,
               ),
             ],
@@ -50,15 +55,15 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
             'MIS COMPRAS EN PROCESO',
             style: TextStyle(),
           ),
-          onTap: () {},
+          onTap: () {
+            ref.read(routeProvider.notifier).prouctsCarrito();
+          },
         ),
         ListTile(
           leading: const Icon(Icons.local_attraction_outlined),
-          title: const Text('OFERTAS'),
-          onTap: () {
-            // Update the state of the app.
-            // ...
-          },
+          // ignore: unnecessary_brace_in_string_interps
+          //title: Text('OFERTAS + ${retro}'),
+          onTap: () {},
         ),
         ListTile(
           leading: const Icon(Icons.add),

@@ -11,6 +11,9 @@ abstract class ProductState with _$ProductState {
   const factory ProductState({
     @Default([]) List<Product> product,
     @Default(true) bool isLoading,
+    @Default([]) List<Product> productCarrito,
+    @Default(0) double totalCompra,
+    @Default(true) bool estadoQuantity,
   }) = _ProductState;
 
   const ProductState._();

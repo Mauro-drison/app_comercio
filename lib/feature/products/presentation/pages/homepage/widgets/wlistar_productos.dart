@@ -70,24 +70,26 @@ class ListarProducts extends ConsumerWidget {
                                         ),
                                       ),
                                     ),
-                                    //Expanded(
-                                    //  child: Container(
-                                    //    width:
-                                    //        MediaQuery.of(context).size.width * 0.5,
-                                    //    child: Padding(
-                                    //      padding: const EdgeInsets.fromLTRB(
-                                    //          5, 10, 0, 0),
-                                    //      child: Text(
-                                    //        '\nEstado: ${dataProduct[index].endingDate ? "DISPONIBLE" : "AGOTADO"} ' +
-                                    //            '\nStock: ${controller.productoList[index].stock}'
-                                    //                .toString(),
-                                    //        style: TextStyle(
-                                    //          fontSize: 12,
-                                    //        ),
-                                    //      ),
-                                    //    ),
-                                    //  ),
-                                    //),
+                                    Expanded(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.5,
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              5, 10, 0, 0),
+                                          child: Text(
+                                            //'\nEstado: ${dataProduct[index].endingDate ? "DISPONIBLE" : "AGOTADO"} ' +
+                                            'Stock: ${dataProduct[index].quantity}'
+                                                    '\nESTADO:'
+                                                .toString(),
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -114,7 +116,35 @@ class ListarProducts extends ConsumerWidget {
                                         color: Colors.green,
                                         icon: const Icon(
                                             Icons.shopping_bag_outlined),
-                                        onPressed: () async {},
+                                        onPressed: () async {
+                                          if (dataProduct[index].quantity ==
+                                              0) {
+                                            final snackBar = SnackBar(
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                              content: const Text(
+                                                  // ignore: unnecessary_string_interpolations
+                                                  'Producto no disponible'),
+                                              action: SnackBarAction(
+                                                label: 'Undo',
+                                                onPressed: () {
+                                                  // Some code to undo the change.
+                                                },
+                                              ),
+                                            );
+
+                                            // Find the ScaffoldMessenger in the widget tree
+                                            // and use it to show a SnackBar.
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(snackBar);
+                                          } else {
+                                            ref
+                                                .watch(productNotifierProvider
+                                                    .notifier)
+                                                .carritoProducts(
+                                                    index, dataProduct);
+                                          }
+                                        },
                                       ),
                                     ),
                                   ],
