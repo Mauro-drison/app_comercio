@@ -83,7 +83,7 @@ class ListarProducts extends ConsumerWidget {
                                             'Stock: ${dataProduct[index].quantity}'
                                                     '\nESTADO:'
                                                 .toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 12,
                                             ),
                                           ),

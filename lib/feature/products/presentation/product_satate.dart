@@ -67,6 +67,15 @@ class ProductNotifier extends StateNotifier<ProductState> {
     suma = 0;
   }
 
+  retro() {
+    return "texto";
+  }
+
+  conteoProductos(productos) {
+    productos = productos.length;
+    return productos;
+  }
+
   comprarProdutsDelCarrito(productsCarrito, products) async {
     // ignore: unused_local_variable
     for (var x in productsCarrito) {

@@ -21,6 +21,7 @@ mixin _$ProductState {
   List<Product> get productCarrito => throw _privateConstructorUsedError;
   double get totalCompra => throw _privateConstructorUsedError;
   bool get estadoQuantity => throw _privateConstructorUsedError;
+  List<Product> get productSinStock => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductStateCopyWith<ProductState> get copyWith =>
@@ -38,7 +39,8 @@ abstract class $ProductStateCopyWith<$Res> {
       bool isLoading,
       List<Product> productCarrito,
       double totalCompra,
-      bool estadoQuantity});
+      bool estadoQuantity,
+      List<Product> productSinStock});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
     Object? productCarrito = null,
     Object? totalCompra = null,
     Object? estadoQuantity = null,
+    Object? productSinStock = null,
   }) {
     return _then(_value.copyWith(
       product: null == product
@@ -81,6 +84,10 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
           ? _value.estadoQuantity
           : estadoQuantity // ignore: cast_nullable_to_non_nullable
               as bool,
+      productSinStock: null == productSinStock
+          ? _value.productSinStock
+          : productSinStock // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ) as $Val);
   }
 }
@@ -98,7 +105,8 @@ abstract class _$$_ProductStateCopyWith<$Res>
       bool isLoading,
       List<Product> productCarrito,
       double totalCompra,
-      bool estadoQuantity});
+      bool estadoQuantity,
+      List<Product> productSinStock});
 }
 
 /// @nodoc
@@ -117,6 +125,7 @@ class __$$_ProductStateCopyWithImpl<$Res>
     Object? productCarrito = null,
     Object? totalCompra = null,
     Object? estadoQuantity = null,
+    Object? productSinStock = null,
   }) {
     return _then(_$_ProductState(
       product: null == product
@@ -139,6 +148,10 @@ class __$$_ProductStateCopyWithImpl<$Res>
           ? _value.estadoQuantity
           : estadoQuantity // ignore: cast_nullable_to_non_nullable
               as bool,
+      productSinStock: null == productSinStock
+          ? _value._productSinStock
+          : productSinStock // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -151,9 +164,11 @@ class _$_ProductState extends _ProductState {
       this.isLoading = true,
       final List<Product> productCarrito = const [],
       this.totalCompra = 0,
-      this.estadoQuantity = true})
+      this.estadoQuantity = true,
+      final List<Product> productSinStock = const []})
       : _product = product,
         _productCarrito = productCarrito,
+        _productSinStock = productSinStock,
         super._();
 
   final List<Product> _product;
@@ -183,10 +198,18 @@ class _$_ProductState extends _ProductState {
   @override
   @JsonKey()
   final bool estadoQuantity;
+  final List<Product> _productSinStock;
+  @override
+  @JsonKey()
+  List<Product> get productSinStock {
+    if (_productSinStock is EqualUnmodifiableListView) return _productSinStock;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productSinStock);
+  }
 
   @override
   String toString() {
-    return 'ProductState(product: $product, isLoading: $isLoading, productCarrito: $productCarrito, totalCompra: $totalCompra, estadoQuantity: $estadoQuantity)';
+    return 'ProductState(product: $product, isLoading: $isLoading, productCarrito: $productCarrito, totalCompra: $totalCompra, estadoQuantity: $estadoQuantity, productSinStock: $productSinStock)';
   }
 
   @override
@@ -202,7 +225,9 @@ class _$_ProductState extends _ProductState {
             (identical(other.totalCompra, totalCompra) ||
                 other.totalCompra == totalCompra) &&
             (identical(other.estadoQuantity, estadoQuantity) ||
-                other.estadoQuantity == estadoQuantity));
+                other.estadoQuantity == estadoQuantity) &&
+            const DeepCollectionEquality()
+                .equals(other._productSinStock, _productSinStock));
   }
 
   @override
@@ -212,7 +237,8 @@ class _$_ProductState extends _ProductState {
       isLoading,
       const DeepCollectionEquality().hash(_productCarrito),
       totalCompra,
-      estadoQuantity);
+      estadoQuantity,
+      const DeepCollectionEquality().hash(_productSinStock));
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +253,8 @@ abstract class _ProductState extends ProductState {
       final bool isLoading,
       final List<Product> productCarrito,
       final double totalCompra,
-      final bool estadoQuantity}) = _$_ProductState;
+      final bool estadoQuantity,
+      final List<Product> productSinStock}) = _$_ProductState;
   const _ProductState._() : super._();
 
   @override
@@ -240,6 +267,8 @@ abstract class _ProductState extends ProductState {
   double get totalCompra;
   @override
   bool get estadoQuantity;
+  @override
+  List<Product> get productSinStock;
   @override
   @JsonKey(ignore: true)
   _$$_ProductStateCopyWith<_$_ProductState> get copyWith =>
