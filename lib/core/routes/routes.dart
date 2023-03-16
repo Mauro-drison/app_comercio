@@ -64,6 +64,10 @@ class RouterNotifier extends ChangeNotifier {
       if (areWeLoggingIn) return '/carrito_products';
       print("-------------carr-----------------");
     }
+    if (user.nameR == "route3") {
+      if (areWeLoggingIn) return '/productos_sin_stock';
+      print("-------------carr-----------------");
+    }
     // There's no need for a redirect at this point.
     return null;
   }
@@ -82,6 +86,11 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           name: "carrito_products",
           path: '/carrito_products',
+          builder: (context, _) => const CarritoProducts(),
+        ),
+        GoRoute(
+          name: "carrito_products",
+          path: '/productos_sin_stock',
           builder: (context, _) => const CarritoProducts(),
         ),
       ];
