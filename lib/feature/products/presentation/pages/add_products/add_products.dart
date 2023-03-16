@@ -11,6 +11,7 @@ class AgregarProductos extends ConsumerStatefulWidget {
   AgregarProductos({Key? key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _StatefulBottomSheetState createState() => _StatefulBottomSheetState();
 }
 
@@ -21,7 +22,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
   final name = TextEditingController();
   final image = TextEditingController();
   final price = TextEditingController();
-  final starDate = TextEditingController();
+  final startDate = TextEditingController();
   final endingDate = TextEditingController();
   final quantity = TextEditingController();
   @override
@@ -34,7 +35,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("AGREGAR PRODUCTOS"),
+        title: const Text("AGREGAR PRODUCTOS"),
         leading: IconButton(
           tooltip: 'Previous choice',
           icon: const Icon(Icons.arrow_back),
@@ -43,94 +44,107 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
           },
         ),
       ),
-      body: Container(
-        child: Padding(
-          padding: EdgeInsets.only(top: 30, left: 30, right: 30),
-          child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'nombre',
-                    ),
-                    controller: name,
-                    //initialValue: productos.name,
-                    // The validator receives the text that the user has entered.
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
+      body: Padding(
+        padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+        child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'nombre',
+                  ),
+                  controller: name,
+                  //initialValue: productos.name,
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'imagen',
+                  ),
+                  controller: image,
+                  //initialValue: productos.name,
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'precio',
+                  ),
+                  controller: price,
+                  //initialValue: productos.name,
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (utils.isNumeric(value!)) {
                       return null;
-                    },
+                    } else {
+                      return 'solo número';
+                    }
+                  },
+                  //  onChanged: (value) {
+                  //    productos.price = value as double;
+                  //  }
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'cantidad',
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'precio',
+                  controller: quantity,
+                  //initialValue: productos.name,
+                  // The validator receives the text that the user has entered.
+                  validator: (value) {
+                    if (utils.isNumeric(value!)) {
+                      return null;
+                    } else {
+                      return 'solo número';
+                    }
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
                     ),
-                    controller: price,
-                    //initialValue: productos.name,
-                    // The validator receives the text that the user has entered.
-                    validator: (value) {
-                      if (utils.isNumeric(value!)) {
-                        return null;
-                      } else {
-                        return 'solo número';
-                      }
-                    },
-                    //  onChanged: (value) {
-                    //    productos.price = value as double;
-                    //  }
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'cantidad',
-                    ),
-                    controller: quantity,
-                    //initialValue: productos.name,
-                    // The validator receives the text that the user has entered.
-                    validator: (value) {
-                      if (utils.isNumeric(value!)) {
-                        return null;
-                      } else {
-                        return 'solo número';
-                      }
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.green),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ProductModel producto = ProductModel(
-                              id: 1,
-                              name: name.text,
-                              image: image.text,
-                              price: double.parse(price.text),
-                              quantity: int.parse(quantity.text),
-                              stardDate: starDate.text,
-                              endingDate: starDate.text);
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        ProductModel producto = ProductModel(
+                            id: 1,
+                            name: name.text,
+                            image: image.text,
+                            price: double.parse(price.text),
+                            quantity: int.parse(quantity.text),
+                            startDate: startDate.text,
+                            endingDate: startDate.text);
 
-                          ref
-                              .watch(productNotifierProvider.notifier)
-                              .agregarProductos(producto);
-                          //ref.watch(getProductData);
-                        }
-                      },
-                      child: const Text('GUARDAR'),
-                    ),
+                        ref
+                            .watch(productNotifierProvider.notifier)
+                            .agregarProductos(producto);
+                        //ref.watch(getProductData);
+                      }
+                    },
+                    child: const Text('GUARDAR'),
                   ),
-                ],
-              )),
-        ),
+                ),
+              ],
+            )),
       ),
     );
   }

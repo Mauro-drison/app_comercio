@@ -21,7 +21,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
   getProduct() async {
     state = state.copyWith(isLoading: true);
-    print("obtener productosCarrito");
+    print("obtener productos");
     //final moviesList = await MovieService().fetchMovies();
     // Convert list to list of movies using the movie class constructor
     //final movies = moviesList.map((e) => Movie.fromJson(e)).toList();
@@ -38,9 +38,10 @@ class ProductNotifier extends StateNotifier<ProductState> {
   agregarProductosSinStock(productos) {
     for (var i in productos) {
       if (i.quantity == 0) {
+        print(i.name);
         final productosSinStockk =
             List<ProductModel>.from(state.productSinStock);
-        productosSinStockk.add(productos);
+        productosSinStockk.add(i);
         state = state.copyWith(productSinStock: productosSinStockk);
       }
     }
@@ -49,9 +50,9 @@ class ProductNotifier extends StateNotifier<ProductState> {
   agregarProductos(producto) async {
     state = state.copyWith(isLoading: true);
     final product = await ProductRemoteDatasource().crearProducto(producto);
-    final productosCarrito = List<ProductModel>.from(state.product);
-    productosCarrito.add(producto);
-    state = state.copyWith(product: productosCarrito, isLoading: false);
+    final productos = List<ProductModel>.from(state.product);
+    productos.add(producto);
+    state = state.copyWith(product: productos, isLoading: false);
   }
 
   modificarProducto(productos) async {
@@ -107,14 +108,14 @@ class ProductNotifier extends StateNotifier<ProductState> {
             // ignore: unused_local_variable
             final product =
                 await ProductRemoteDatasource().modificarProducto(xx);
-            final productosCarrito =
-                List<ProductModel>.from(state.productCarrito);
-            productosCarrito.remove(xx);
+            final productos = List<ProductModel>.from(state.productCarrito);
+            productos.remove(xx);
             suma = 0;
             state = state.copyWith(
-                productCarrito: productosCarrito,
+                productCarrito: productos,
                 totalCompra: suma,
                 estadoQuantity: true);
+
             print("completo");
           } else {
             print(x.name);

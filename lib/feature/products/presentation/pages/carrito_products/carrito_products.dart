@@ -69,6 +69,7 @@ class CarritoProducts extends ConsumerWidget {
                               },
                             ),
                           );
+                          //ref.watch(productNotifierProvider.notifier).agregarProductosSinStock()
 
                           // Find the ScaffoldMessenger in the widget tree
                           // and use it to show a SnackBar.

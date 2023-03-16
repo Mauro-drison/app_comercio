@@ -13,7 +13,7 @@ class ProductModel implements Product {
       {required this.id,
       required this.name,
       required this.price,
-      required this.stardDate,
+      required this.startDate,
       required this.endingDate,
       required this.quantity,
       required this.image});
@@ -25,7 +25,7 @@ class ProductModel implements Product {
   @override
   double price;
   @override
-  String stardDate;
+  String startDate;
   @override
   String endingDate;
   @override
@@ -37,7 +37,7 @@ class ProductModel implements Product {
       id: json["id"],
       name: json["name"],
       price: json["price"],
-      stardDate: json["stard_date"],
+      startDate: json["start_date"],
       endingDate: json["ending_date"],
       quantity: json["quantity"],
       image: json["image"]);

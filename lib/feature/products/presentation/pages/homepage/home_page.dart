@@ -1,4 +1,5 @@
 import 'package:app_comercio/core/routes/routes.dart';
+import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/widgets/drawer_home.dart';
@@ -23,13 +24,15 @@ class HomePage extends ConsumerWidget {
     double heightt = MediaQuery.of(context).size.height;
     List<Product> carritoProducto =
         ref.watch(productNotifierProvider).productCarrito;
+    List<Product> productosSinStockk =
+        ref.watch(productNotifierProvider).productSinStock;
     //print(data_product);
     return Scaffold(
         appBar: AppBar(
           title: const Text('Lista de Productos'),
           actions: <Widget>[
             _shoppingCartBadge(carritoProducto, ref),
-            _notificacionProductosSinStock(carritoProducto, ref),
+            _notificacionProductosSinStock(productosSinStockk, ref),
           ],
         ),
         drawer: const Drawer(
@@ -55,7 +58,11 @@ class HomePage extends ConsumerWidget {
           carritoProducto.length.toString(),
           style: TextStyle(color: Colors.white),
         ),
-        child: IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
+        child: IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              ref.read(routeProvider.notifier).prouctsCarrito();
+            }),
       ),
     );
   }
@@ -78,7 +85,10 @@ class HomePage extends ConsumerWidget {
           style: TextStyle(color: Colors.white),
         ),
         child: IconButton(
-            icon: const Icon(Icons.notification_add), onPressed: () {}),
+            icon: const Icon(Icons.notification_add),
+            onPressed: () {
+              ref.read(routeProvider.notifier).productosSinStock();
+            }),
       ),
     );
   }

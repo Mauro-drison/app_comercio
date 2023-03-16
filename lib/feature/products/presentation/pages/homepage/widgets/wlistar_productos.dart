@@ -80,8 +80,7 @@ class ListarProducts extends ConsumerWidget {
                                               5, 10, 0, 0),
                                           child: Text(
                                             //'\nEstado: ${dataProduct[index].endingDate ? "DISPONIBLE" : "AGOTADO"} ' +
-                                            'Stock: ${dataProduct[index].quantity}'
-                                                    '\nESTADO:'
+                                            'STOCK: ${dataProduct[index].quantity}'
                                                 .toString(),
                                             style: const TextStyle(
                                               fontSize: 12,

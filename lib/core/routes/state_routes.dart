@@ -28,6 +28,13 @@ class RoutesState extends StateNotifier<Route?> {
         nameR:
             "route3"); // Aquí no se burla de ninguna solicitud, pero supongo que podríamos
   }
+
+  Future<void> productosSinStock() async {
+    // En este ejemplo, usuario == nulo si estamos desconectados
+    state = const Route(
+        nameR:
+            "route4"); // Aquí no se burla de ninguna solicitud, pero supongo que podríamos
+  }
 }
 
 final routeProvider = StateNotifierProvider<RoutesState, Route?>((ref) {

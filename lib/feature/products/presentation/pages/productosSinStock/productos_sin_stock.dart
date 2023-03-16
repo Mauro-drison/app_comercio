@@ -38,54 +38,7 @@ class ProductosSinStock extends ConsumerWidget {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(child: listaProductos(productosSinStock, ref)),
-          Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: FloatingActionButton(
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Desea confirmar la compra'),
-                    content: Text('precio total: \$ $sumaProductos'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          ref
-                              .watch(productNotifierProvider.notifier)
-                              .comprarProdutsDelCarrito(
-                                  carritoProducts, products);
-                          final snackBar = SnackBar(
-                            content: Text(
-                                // ignore: unnecessary_string_interpolations
-                                '${estadoQuantity ? "Compra exitosa" : "Algun producto no tiene Stock"}'),
-                            action: SnackBarAction(
-                              label: 'Undo',
-                              onPressed: () {
-                                // Some code to undo the change.
-                              },
-                            ),
-                          );
-
-                          // Find the ScaffoldMessenger in the widget tree
-                          // and use it to show a SnackBar.
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              backgroundColor: Colors.green,
-              child: const Icon(Icons.confirmation_number_sharp),
-            ),
-          ),
+          Expanded(child: listaProductos(productosSinStock, ref))
         ],
       ),
     );
@@ -109,6 +62,7 @@ class ProductosSinStock extends ConsumerWidget {
               child: ListTile(
                 //contentPadding: EdgeInsets.all(100.0),
                 title: Text(carritoProducts[index].name),
+                subtitle: const Text("SE NECESITA MAS STOCK DE ESTE PRODUCTO"),
                 trailing: IconButton(
                   icon: const Icon(
                     Icons.cancel,

@@ -3,7 +3,7 @@ abstract class Product {
       {required this.id,
       required this.name,
       required this.price,
-      required this.stardDate,
+      required this.startDate,
       required this.endingDate,
       required this.quantity,
       required this.image});
@@ -14,7 +14,7 @@ abstract class Product {
 
   double price;
 
-  String stardDate;
+  String startDate;
 
   String endingDate;
 

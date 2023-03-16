@@ -60,12 +60,6 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.local_attraction_outlined),
-          // ignore: unnecessary_brace_in_string_interps
-          //title: Text('OFERTAS + ${retro}'),
-          onTap: () {},
-        ),
-        ListTile(
           leading: const Icon(Icons.add),
           title: const Text('AGREGAR PRODUCTOS'),
           onTap: () {

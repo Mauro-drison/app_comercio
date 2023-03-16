@@ -2,6 +2,7 @@ import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/presentation/pages/add_products/add_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
+import 'package:app_comercio/feature/products/presentation/pages/productosSinStock/productos_sin_stock.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,7 +65,7 @@ class RouterNotifier extends ChangeNotifier {
       if (areWeLoggingIn) return '/carrito_products';
       print("-------------carr-----------------");
     }
-    if (user.nameR == "route3") {
+    if (user.nameR == "route4") {
       if (areWeLoggingIn) return '/productos_sin_stock';
       print("-------------carr-----------------");
     }
@@ -89,9 +90,9 @@ class RouterNotifier extends ChangeNotifier {
           builder: (context, _) => const CarritoProducts(),
         ),
         GoRoute(
-          name: "carrito_products",
+          name: "productos_sin_stock",
           path: '/productos_sin_stock',
-          builder: (context, _) => const CarritoProducts(),
+          builder: (context, _) => const ProductosSinStock(),
         ),
       ];
 }
