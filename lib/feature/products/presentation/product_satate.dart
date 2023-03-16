@@ -32,6 +32,18 @@ class ProductNotifier extends StateNotifier<ProductState> {
             .getProducts();
     print("ESTADO PRODUCTOS $product");
     state = state.copyWith(product: product, isLoading: false);
+    agregarProductosSinStock(product);
+  }
+
+  agregarProductosSinStock(productos) {
+    for (var i in productos) {
+      if (i.quantity == 0) {
+        final productosSinStockk =
+            List<ProductModel>.from(state.productSinStock);
+        productosSinStockk.add(productos);
+        state = state.copyWith(productSinStock: productosSinStockk);
+      }
+    }
   }
 
   agregarProductos(producto) async {
@@ -42,7 +54,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
     state = state.copyWith(product: productosCarrito, isLoading: false);
   }
 
-  modificarProducto() async {
+  modificarProducto(productos) async {
     //final product = await ProductRemoteDatasource().modificarProducto(producto);
   }
 
