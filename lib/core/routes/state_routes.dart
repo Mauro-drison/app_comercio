@@ -35,6 +35,22 @@ class RoutesState extends StateNotifier<Route?> {
         nameR:
             "route4"); // Aquí no se burla de ninguna solicitud, pero supongo que podríamos
   }
+
+  // ignore: non_constant_identifier_names
+  Future<void> pages_editar_eliminar_products() async {
+    // En este ejemplo, usuario == nulo si estamos desconectados
+    state = const Route(
+        nameR:
+            "route5"); // Aquí no se burla de ninguna solicitud, pero supongo que podríamos
+  }
+
+  // ignore: non_constant_identifier_names
+  Future<void> editar_product() async {
+    // En este ejemplo, usuario == nulo si estamos desconectados
+    state = const Route(
+        nameR:
+            "route6"); // Aquí no se burla de ninguna solicitud, pero supongo que podríamos
+  }
 }
 
 final routeProvider = StateNotifierProvider<RoutesState, Route?>((ref) {

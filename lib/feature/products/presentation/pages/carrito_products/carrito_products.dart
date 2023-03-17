@@ -17,6 +17,8 @@ class CarritoProducts extends ConsumerWidget {
     // ignore: unused_local_variable
     List<Product> carritoProducts =
         ref.watch(productNotifierProvider).productCarrito;
+    List<Product> productosSinStock =
+        ref.watch(productNotifierProvider).productSinStock;
     // ignore: unused_local_variable
     var medida = MediaQuery.of(context);
     var sumaProductos = ref.watch(productNotifierProvider).totalCompra;
@@ -69,6 +71,9 @@ class CarritoProducts extends ConsumerWidget {
                               },
                             ),
                           );
+                          ref
+                              .watch(productNotifierProvider.notifier)
+                              .agregarProductosSinStock(ref);
                           //ref.watch(productNotifierProvider.notifier).agregarProductosSinStock()
 
                           // Find the ScaffoldMessenger in the widget tree

@@ -68,8 +68,10 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
         ),
         ListTile(
           leading: const Icon(Icons.edit),
-          title: const Text('EDITAR PRODUCTOS'),
-          onTap: () {},
+          title: const Text('EDITAR Y ELIMINAR PRODUCTOS'),
+          onTap: () {
+            ref.read(routeProvider.notifier).pages_editar_eliminar_products();
+          },
         ),
       ],
     );

@@ -1,6 +1,8 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/presentation/pages/add_products/add_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
+import 'package:app_comercio/feature/products/presentation/pages/editar_eliminar_products/editar_product.dart';
+import 'package:app_comercio/feature/products/presentation/pages/editar_eliminar_products/pages_editar_eliminar_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
 import 'package:app_comercio/feature/products/presentation/pages/productosSinStock/productos_sin_stock.dart';
 import 'package:flutter/foundation.dart';
@@ -69,6 +71,15 @@ class RouterNotifier extends ChangeNotifier {
       if (areWeLoggingIn) return '/productos_sin_stock';
       print("-------------carr-----------------");
     }
+    if (user.nameR == "route5") {
+      if (areWeLoggingIn) return '/pages_editar_eliminar_products';
+      print("-------------carr-----------------");
+    }
+    if (user.nameR == "route6") {
+      if (areWeLoggingIn)
+        return '/pages_editar_eliminar_products/editar_product';
+      print("-------------carr-----------------");
+    }
     // There's no need for a redirect at this point.
     return null;
   }
@@ -93,6 +104,16 @@ class RouterNotifier extends ChangeNotifier {
           name: "productos_sin_stock",
           path: '/productos_sin_stock',
           builder: (context, _) => const ProductosSinStock(),
+        ),
+        GoRoute(
+          name: "pages_editar_eliminar_products",
+          path: '/pages_editar_eliminar_products',
+          builder: (context, _) => const Pages_editar_eliminar_products(),
+        ),
+        GoRoute(
+          name: "editar_product",
+          path: '/pages_editar_eliminar_products/editar_product',
+          builder: (context, _) => const EditarProduct(),
         ),
       ];
 }

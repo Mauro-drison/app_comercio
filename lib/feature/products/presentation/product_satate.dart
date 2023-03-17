@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:app_comercio/feature/products/data/datasource/product_remote.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/data/repository/product_provider.dart';
-import 'package:app_comercio/feature/products/domain/entities/product.dart';
+
 import 'package:app_comercio/feature/products/domain/products_provider.dart';
 import 'package:app_comercio/feature/products/domain/usecases/get_product.dart';
-import 'package:dartz/dartz_streaming.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProductNotifier extends StateNotifier<ProductState> {
@@ -35,8 +33,11 @@ class ProductNotifier extends StateNotifier<ProductState> {
     agregarProductosSinStock(product);
   }
 
-  agregarProductosSinStock(productos) {
-    for (var i in productos) {
+//primera lista vacia
+  agregarProductosSinStock(product) {
+    for (var i in product) {
+      //for (var istock in state.productSinStock) {
+      //if (i.id != istock.id) {
       if (i.quantity == 0) {
         print(i.name);
         final productosSinStockk =
@@ -44,6 +45,8 @@ class ProductNotifier extends StateNotifier<ProductState> {
         productosSinStockk.add(i);
         state = state.copyWith(productSinStock: productosSinStockk);
       }
+      // }
+      //}
     }
   }
 
