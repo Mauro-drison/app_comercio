@@ -26,7 +26,7 @@ class CarritoProducts extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gestión de Productos"),
+        title: const Text("Carrito de compraS"),
         backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           tooltip: 'Previous choice',
@@ -40,7 +40,7 @@ class CarritoProducts extends ConsumerWidget {
         children: <Widget>[
           Expanded(child: listaProductos(carritoProducts, ref)),
           Padding(
-            padding: const EdgeInsets.all(40.0),
+            padding: const EdgeInsets.all(1.0),
             child: FloatingActionButton(
               onPressed: () {
                 showDialog<String>(
@@ -54,18 +54,19 @@ class CarritoProducts extends ConsumerWidget {
                         child: const Text('Cancel'),
                       ),
                       TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           Navigator.pop(context);
                           ref
                               .watch(productNotifierProvider.notifier)
                               .comprarProdutsDelCarrito(
                                   carritoProducts, products);
                           final snackBar = SnackBar(
+                            //duration: const Duration(seconds: 1),
                             content: Text(
                                 // ignore: unnecessary_string_interpolations
                                 '${estadoQuantity ? "Compra exitosa" : "Algun producto no tiene Stock"}'),
                             action: SnackBarAction(
-                              label: 'Undo',
+                              label: 'ok',
                               onPressed: () {
                                 // Some code to undo the change.
                               },
@@ -103,16 +104,21 @@ class CarritoProducts extends ConsumerWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(1.0),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
+                borderRadius: BorderRadius.circular(10.0),
+                color: Color.fromARGB(255, 56, 64, 70)),
             height: 80.0,
             child: Center(
               child: ListTile(
                 //contentPadding: EdgeInsets.all(100.0),
-                title: Text(carritoProducts[index].name),
+                title: Text(
+                  '${carritoProducts[index].name}\nPRECIO: ${carritoProducts[index].price}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 trailing: IconButton(
                   icon: const Icon(
                     Icons.cancel,

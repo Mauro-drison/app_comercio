@@ -28,6 +28,7 @@ class HomePage extends ConsumerWidget {
         ref.watch(productNotifierProvider).productSinStock;
     //print(data_product);
     return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 183, 204, 235),
         appBar: AppBar(
           title: const Text('Lista de Productos'),
           actions: <Widget>[

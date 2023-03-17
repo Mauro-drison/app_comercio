@@ -1,3 +1,4 @@
+import 'package:app_comercio/core/services/notification_services.dart';
 import 'package:app_comercio/feature/products/data/datasource/product_remote.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/data/repository/product_provider.dart';
@@ -39,6 +40,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
       //for (var istock in state.productSinStock) {
       //if (i.id != istock.id) {
       if (i.quantity == 0) {
+        showNotificacion();
         print(i.name);
         final productosSinStockk =
             List<ProductModel>.from(state.productSinStock);
@@ -99,6 +101,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
       if (x.quantity == 0) {
         // ignore: avoid_print
         print("el numero ingresado no es valido");
+        showNotificacion();
         state = state.copyWith(estadoQuantity: false);
         break;
       } else {

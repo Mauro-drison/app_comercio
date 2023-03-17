@@ -52,7 +52,7 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
         ListTile(
           leading: const Icon(Icons.add_shopping_cart_outlined),
           title: const Text(
-            'MIS COMPRAS EN PROCESO',
+            'CARRITO DE COMRAS',
             style: TextStyle(),
           ),
           onTap: () {

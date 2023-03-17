@@ -26,10 +26,11 @@ class MyApp extends ConsumerWidget {
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
       theme: ThemeData(
-        //Se indica que el tema tiene un brillo luminoso/claro
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-      ),
+          //Se indica que el tema tiene un brillo luminoso/claro
+
+          brightness: Brightness.light,
+          //backgroundColor: Colors.amber,
+          primarySwatch: Colors.blue),
       darkTheme: ThemeData(
         //Se indica que el tema tiene un brillo oscuro
         brightness: Brightness.dark,

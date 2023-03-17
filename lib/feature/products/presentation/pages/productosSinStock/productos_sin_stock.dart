@@ -26,7 +26,7 @@ class ProductosSinStock extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gestión de Productos"),
+        title: const Text("Productos sin stock"),
         backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           tooltip: 'Previous choice',
@@ -48,43 +48,37 @@ class ProductosSinStock extends ConsumerWidget {
     carritoProducts;
     // ignore: avoid_unnecessary_containers
     return Container(
-        child: ListView.builder(
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            height: 80.0,
-            child: Center(
-              child: ListTile(
-                //contentPadding: EdgeInsets.all(100.0),
-                title: Text(carritoProducts[index].name),
-                subtitle: const Text("SE NECESITA MAS STOCK DE ESTE PRODUCTO"),
-                trailing: IconButton(
-                  icon: const Icon(
-                    Icons.cancel,
-                    color: Colors.red,
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(1.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              height: 80.0,
+              child: Center(
+                child: ListTile(
+                  //contentPadding: EdgeInsets.all(100.0),
+                  title: Text(carritoProducts[index].name),
+                  subtitle:
+                      const Text("SE NECESITA MAS STOCK DE ESTE PRODUCTO"),
+
+                  leading: SizedBox(
+                    height: 100.0,
+                    width: 100.0,
+                    child: Image.network(carritoProducts[index].image),
                   ),
-                  onPressed: () {
-                    ref
-                        .watch(productNotifierProvider.notifier)
-                        .carritoProductsCancel(index, carritoProducts);
-                  },
-                ),
-                leading: SizedBox(
-                  height: 100.0,
-                  width: 100.0,
-                  child: Image.network(carritoProducts[index].image),
                 ),
               ),
             ),
-          ),
-        );
-      },
-      itemCount: carritoProducts.length,
+          );
+        },
+        itemCount: carritoProducts.length,
+      ),
     ));
   }
 }

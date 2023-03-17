@@ -1,8 +1,9 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/presentation/pages/add_products/add_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
-import 'package:app_comercio/feature/products/presentation/pages/editar_eliminar_products/editar_product.dart';
-import 'package:app_comercio/feature/products/presentation/pages/editar_eliminar_products/pages_editar_eliminar_products.dart';
+import 'package:app_comercio/feature/products/presentation/pages/eliminar_products/editar_product.dart';
+import 'package:app_comercio/feature/products/presentation/pages/eliminar_products/pages_editar_eliminar_products.dart';
+
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
 import 'package:app_comercio/feature/products/presentation/pages/productosSinStock/productos_sin_stock.dart';
 import 'package:flutter/foundation.dart';

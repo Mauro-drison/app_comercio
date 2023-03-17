@@ -68,7 +68,6 @@ class ListarProducts extends ConsumerWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),
-                          color: Colors.white,
                           elevation: 10,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,

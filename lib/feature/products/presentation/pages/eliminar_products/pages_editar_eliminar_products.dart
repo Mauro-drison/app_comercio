@@ -26,6 +26,7 @@ class Pages_editar_eliminar_products extends ConsumerWidget {
         ref.watch(productNotifierProvider).productSinStock;
     //print(data_product);
     return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 183, 204, 235),
         appBar: AppBar(
           title: const Text('Lista de Productos'),
           leading: IconButton(
@@ -36,7 +37,8 @@ class Pages_editar_eliminar_products extends ConsumerWidget {
             },
           ),
         ),
-        body: const ListarProducts());
+        // ignore: prefer_const_constructors
+        body: ListarProducts());
   }
 }
 
@@ -68,7 +70,6 @@ class ListarProducts extends ConsumerWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),
-                          color: Colors.white,
                           elevation: 10,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,

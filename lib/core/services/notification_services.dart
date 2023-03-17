@@ -36,7 +36,7 @@ Future<void> showNotificacion() async {
 
   await flutterLocalNotificationsPlugin.show(
       1,
-      'Titulo de notificacion',
-      'Esta es una notificación de prueba para mostrar en el canal. Los quiero mucho.',
+      'Tienes productos sin stock',
+      'Es necesario que revices el stock de tus productos para que puedas tener abastecimiento',
       notificationDetails);
 }

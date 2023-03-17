@@ -33,9 +33,9 @@ class ListarProducts extends ConsumerWidget {
                         height: heightt * 0.16,
                         child: Card(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4.0),
+                            borderRadius: BorderRadius.circular(6.0),
                           ),
-                          color: Colors.white,
+                          //color: Color.fromARGB(255, 54, 54, 54),
                           elevation: 10,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class ListarProducts extends ConsumerWidget {
                                 child: SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.14,
-                                  width: 160,
+                                  width: 155,
                                   //MediaQuery.of(context).size.width * 0.34,
                                   child: Image.network(dataProduct[index].image,
                                       fit: BoxFit.fill),
@@ -125,7 +125,7 @@ class ListarProducts extends ConsumerWidget {
                                                   // ignore: unnecessary_string_interpolations
                                                   'Producto no disponible'),
                                               action: SnackBarAction(
-                                                label: 'Undo',
+                                                label: 'ok',
                                                 onPressed: () {
                                                   // Some code to undo the change.
                                                 },

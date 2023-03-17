@@ -45,12 +45,14 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+        padding: EdgeInsets.only(top: 30, left: 60, right: 30),
         child: Form(
             key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: [
+                const SizedBox(
+                  height: 5.0,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -66,6 +68,9 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                     return null;
                   },
                 ),
+                const SizedBox(
+                  height: 5.0,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -80,6 +85,9 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                     }
                     return null;
                   },
+                ),
+                const SizedBox(
+                  height: 5.0,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -100,6 +108,9 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                   //    productos.price = value as double;
                   //  }
                 ),
+                const SizedBox(
+                  height: 5.0,
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -116,32 +127,32 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                     }
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        ProductModel producto = ProductModel(
-                            id: 1,
-                            name: name.text,
-                            image: image.text,
-                            price: double.parse(price.text),
-                            quantity: int.parse(quantity.text),
-                            startDate: startDate.text,
-                            endingDate: startDate.text);
-
-                        ref
-                            .watch(productNotifierProvider.notifier)
-                            .agregarProductos(producto);
-                        //ref.watch(getProductData);
-                      }
-                    },
-                    child: const Text('GUARDAR'),
+                const SizedBox(
+                  height: 5.0,
+                ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.green),
                   ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ProductModel producto = ProductModel(
+                          id: 1,
+                          name: name.text,
+                          image: image.text,
+                          price: double.parse(price.text),
+                          quantity: int.parse(quantity.text),
+                          startDate: startDate.text,
+                          endingDate: startDate.text);
+
+                      ref
+                          .watch(productNotifierProvider.notifier)
+                          .agregarProductos(producto);
+                      //ref.watch(getProductData);
+                    }
+                  },
+                  child: const Text('GUARDAR'),
                 ),
               ],
             )),
