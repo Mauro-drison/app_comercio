@@ -27,7 +27,10 @@ class EditarProduct extends ConsumerWidget {
     //print(data_product);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Lista de Productos'),
+          title: Text(
+            'Lista de Productos',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
           leading: IconButton(
             tooltip: 'Previous choice',
             icon: const Icon(Icons.arrow_back),

@@ -35,7 +35,10 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AGREGAR PRODUCTOS"),
+        title: Text(
+          "AGREGAR PRODUCTOS",
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         leading: IconButton(
           tooltip: 'Previous choice',
           icon: const Icon(Icons.arrow_back),

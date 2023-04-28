@@ -26,7 +26,10 @@ class ProductosSinStock extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Productos sin stock"),
+        title: Text(
+          "Productos sin stock",
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           tooltip: 'Previous choice',

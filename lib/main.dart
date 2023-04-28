@@ -4,6 +4,7 @@ import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/core/services/notification_services.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:app_comercio/utils/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,23 +20,18 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     //final router = ref.watch(routerprovider);
     final router = ref.watch(routerProvider);
+    final themeligth = ref.watch(theme);
+    final themedarck = ref.watch(darkTheme);
+    final thememode = ref.watch(themeMode);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'App Productos',
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
-      theme: ThemeData(
-          //Se indica que el tema tiene un brillo luminoso/claro
-
-          brightness: Brightness.light,
-          //backgroundColor: Colors.amber,
-          primarySwatch: Colors.blue),
-      darkTheme: ThemeData(
-        //Se indica que el tema tiene un brillo oscuro
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-      ),
+      theme: themeligth,
+      darkTheme: themedarck,
+      themeMode: thememode,
       /*
         theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch(

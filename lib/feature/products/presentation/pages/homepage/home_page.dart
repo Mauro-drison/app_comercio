@@ -30,7 +30,10 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 183, 204, 235),
         appBar: AppBar(
-          title: const Text('Lista de Productos'),
+          title: Text(
+            'Lista de Productos',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
           actions: <Widget>[
             _shoppingCartBadge(carritoProducto, ref),
             _notificacionProductosSinStock(productosSinStockk, ref),

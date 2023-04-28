@@ -26,7 +26,10 @@ class CarritoProducts extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Carrito de compraS"),
+        title: Text(
+          "Carrito de compraS",
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           tooltip: 'Previous choice',

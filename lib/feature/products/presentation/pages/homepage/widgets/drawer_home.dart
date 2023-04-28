@@ -2,6 +2,7 @@ import 'package:app_comercio/core/routes/routes.dart';
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/core/services/notification_services.dart';
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
+import 'package:app_comercio/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -71,6 +72,15 @@ class _StatefulBottomSheetState extends ConsumerState<DrawerHome> {
           title: const Text('EDITAR Y ELIMINAR PRODUCTOS'),
           onTap: () {
             ref.read(routeProvider.notifier).pages_editar_eliminar_products();
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.sunny),
+          title: const Text('CAMBIAR TEMA'),
+          onTap: () {
+            var state = ref.read(themeMode.notifier).state;
+            ref.read(themeMode.notifier).state =
+                state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
           },
         ),
       ],
