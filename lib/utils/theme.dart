@@ -10,8 +10,9 @@ final themeMode = StateProvider((ref) => ThemeMode.light);
 // light
 final _theme = ThemeData(
   brightness: Brightness.light,
+  //primarySwatch: Colors.green,
   appBarTheme:
-      const AppBarTheme(backgroundColor: Color.fromARGB(255, 6, 159, 230)),
+      const AppBarTheme(backgroundColor: Color.fromARGB(255, 161, 71, 245)),
   colorScheme: ColorScheme.fromSeed(
       outline: const Color.fromARGB(255, 27, 182, 61),
       primary: const Color.fromARGB(255, 81, 126, 240),

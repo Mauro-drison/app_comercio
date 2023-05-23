@@ -30,7 +30,6 @@ class ProductosSinStock extends ConsumerWidget {
           "Productos sin stock",
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           tooltip: 'Previous choice',
           icon: const Icon(Icons.arrow_back),

@@ -1,7 +1,9 @@
 import 'package:app_comercio/core/services/notification_services.dart';
 import 'package:app_comercio/feature/products/data/datasource/product_remote.dart';
+import 'package:app_comercio/feature/products/data/datasource/product_remote_datasource_firebase.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/data/repository/product_provider.dart';
+import 'package:app_comercio/feature/products/data/repository/product_repository_firebase.dart';
 
 import 'package:app_comercio/feature/products/domain/products_provider.dart';
 import 'package:app_comercio/feature/products/domain/usecases/get_product.dart';
