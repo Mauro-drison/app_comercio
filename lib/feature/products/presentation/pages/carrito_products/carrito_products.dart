@@ -58,13 +58,13 @@ class CarritoProducts extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () async {
-                          Navigator.pop(context);
                           ref
                               .watch(productNotifierProvider.notifier)
                               .comprarProdutsDelCarrito(
                                   carritoProducts, products);
+                          // ignore: unused_local_variable
                           final snackBar = SnackBar(
-                            //duration: const Duration(seconds: 1),
+                            duration: const Duration(milliseconds: 40),
                             content: Text(
                                 // ignore: unnecessary_string_interpolations
                                 '${estadoQuantity ? "Compra exitosa" : "Algun producto no tiene Stock"}'),
@@ -75,6 +75,7 @@ class CarritoProducts extends ConsumerWidget {
                               },
                             ),
                           );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           ref
                               .watch(productNotifierProvider.notifier)
                               .agregarProductosSinStock(ref);
@@ -82,7 +83,7 @@ class CarritoProducts extends ConsumerWidget {
 
                           // Find the ScaffoldMessenger in the widget tree
                           // and use it to show a SnackBar.
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          Navigator.pop(context, 'comprado');
                         },
                         child: const Text('OK'),
                       ),

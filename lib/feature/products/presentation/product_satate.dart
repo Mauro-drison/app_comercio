@@ -36,6 +36,14 @@ class ProductNotifier extends StateNotifier<ProductState> {
     agregarProductosSinStock(product);
   }
 
+  agregarProductos(producto) async {
+    state = state.copyWith(isLoading: true);
+    final product = await ProductRemoteDatasource().crearProducto(producto);
+    final productos = List<ProductModel>.from(state.product);
+    productos.add(producto);
+    state = state.copyWith(product: productos, isLoading: false);
+  }
+
 //primera lista vacia
   agregarProductosSinStock(product) {
     for (var i in product) {
@@ -52,14 +60,6 @@ class ProductNotifier extends StateNotifier<ProductState> {
       // }
       //}
     }
-  }
-
-  agregarProductos(producto) async {
-    state = state.copyWith(isLoading: true);
-    final product = await ProductRemoteDatasource().crearProducto(producto);
-    final productos = List<ProductModel>.from(state.product);
-    productos.add(producto);
-    state = state.copyWith(product: productos, isLoading: false);
   }
 
   modificarProducto(productos) async {

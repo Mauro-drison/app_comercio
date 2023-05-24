@@ -172,8 +172,6 @@ class ListarProducts extends ConsumerWidget {
                                                   AlertDialog(
                                                 title: const Text(
                                                     'Desea eliminar el producto'),
-                                                content: Text(
-                                                    'precio total: \$ ${dataProduct[index].name}'),
                                                 actions: <Widget>[
                                                   TextButton(
                                                     onPressed: () =>
@@ -196,16 +194,7 @@ class ListarProducts extends ConsumerWidget {
                                                           },
                                                         ),
                                                       );
-                                                      ref
-                                                          .watch(
-                                                              productNotifierProvider
-                                                                  .notifier)
-                                                          .agregarProductosSinStock(
-                                                              ref);
-                                                      //ref.watch(productNotifierProvider.notifier).agregarProductosSinStock()
 
-                                                      // Find the ScaffoldMessenger in the widget tree
-                                                      // and use it to show a SnackBar.
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(

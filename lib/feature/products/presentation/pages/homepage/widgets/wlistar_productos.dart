@@ -29,8 +29,8 @@ class ListarProducts extends ConsumerWidget {
                     return Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
-                        width: widthh * 0.36,
-                        height: heightt * 0.16,
+                        width: 100.0,
+                        height: 100.0,
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6.0),
@@ -43,8 +43,7 @@ class ListarProducts extends ConsumerWidget {
                               Padding(
                                 padding: const EdgeInsets.all(2.0),
                                 child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.14,
+                                  height: 100.0,
                                   width: 155,
                                   //MediaQuery.of(context).size.width * 0.34,
                                   child: Image.network(dataProduct[index].image,
@@ -53,19 +52,22 @@ class ListarProducts extends ConsumerWidget {
                               ),
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.5,
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            10, 10, 0, 0),
-                                        child: Text(
-                                          dataProduct[index].name,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                    Expanded(
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.5,
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 10, 0, 0),
+                                          child: Text(
+                                            dataProduct[index].name,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -94,57 +96,59 @@ class ListarProducts extends ConsumerWidget {
                               ),
                               Expanded(
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          5, 10, 0, 0),
-                                      child: Text(
-                                        // ignore: prefer_interpolation_to_compose_strings
-                                        "PRECIO: \$" +
-                                            dataProduct[index].price.toString(),
-                                        style: const TextStyle(
-                                          fontSize: 14,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            5, 10, 0, 0),
+                                        child: Text(
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          "PRECIO: \$" +
+                                              dataProduct[index]
+                                                  .price
+                                                  .toString(),
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
                                         ),
                                       ),
                                     ),
                                     const SizedBox(
                                       height: 5.0,
                                     ),
-                                    Expanded(
-                                      child: IconButton(
-                                        color: Colors.green,
-                                        icon: const Icon(
-                                            Icons.shopping_bag_outlined),
-                                        onPressed: () async {
-                                          if (dataProduct[index].quantity ==
-                                              0) {
-                                            final snackBar = SnackBar(
-                                              duration:
-                                                  const Duration(seconds: 1),
-                                              content: const Text(
-                                                  // ignore: unnecessary_string_interpolations
-                                                  'Producto no disponible'),
-                                              action: SnackBarAction(
-                                                label: 'ok',
-                                                onPressed: () {
-                                                  // Some code to undo the change.
-                                                },
-                                              ),
-                                            );
+                                    IconButton(
+                                      color: Colors.green,
+                                      icon: const Icon(
+                                          Icons.shopping_bag_outlined),
+                                      onPressed: () async {
+                                        if (dataProduct[index].quantity == 0) {
+                                          final snackBar = SnackBar(
+                                            duration:
+                                                const Duration(seconds: 1),
+                                            content: const Text(
+                                                // ignore: unnecessary_string_interpolations
+                                                'Producto no disponible'),
+                                            action: SnackBarAction(
+                                              label: 'ok',
+                                              onPressed: () {
+                                                // Some code to undo the change.
+                                              },
+                                            ),
+                                          );
 
-                                            // Find the ScaffoldMessenger in the widget tree
-                                            // and use it to show a SnackBar.
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(snackBar);
-                                          } else {
-                                            ref
-                                                .watch(productNotifierProvider
-                                                    .notifier)
-                                                .carritoProducts(
-                                                    index, dataProduct);
-                                          }
-                                        },
-                                      ),
+                                          // Find the ScaffoldMessenger in the widget tree
+                                          // and use it to show a SnackBar.
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        } else {
+                                          ref
+                                              .watch(productNotifierProvider
+                                                  .notifier)
+                                              .carritoProducts(
+                                                  index, dataProduct);
+                                        }
+                                      },
                                     ),
                                   ],
                                 ),
