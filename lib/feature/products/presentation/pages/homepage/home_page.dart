@@ -3,6 +3,7 @@ import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/widgets/drawer_home.dart';
+import 'package:app_comercio/feature/products/presentation/pages/homepage/widgets/search_product_delegate.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/widgets/wlistar_productos.dart';
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:badges/badges.dart' as badges;
@@ -30,10 +31,17 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 183, 204, 235),
         appBar: AppBar(
-          title: Text(
-            'Lista de Productos',
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
+          automaticallyImplyLeading: false,
+          title: ListTile(
+              title: Text(
+                'Lista de Productos',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              onTap: () {
+                showSearch(
+                    context: context,
+                    delegate: SearchProductsDelegate(dataProduct, ref));
+              }),
           actions: <Widget>[
             _shoppingCartBadge(carritoProducto, ref),
             _notificacionProductosSinStock(productosSinStockk, ref),

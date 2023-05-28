@@ -10,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Aquí inicializamos la instancia de notificaciones
   await initNotifications();
+  //showNotificacion();
   runApp(const ProviderScope(child: MyApp()));
 }
 
