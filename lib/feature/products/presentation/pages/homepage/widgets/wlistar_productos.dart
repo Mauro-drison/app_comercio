@@ -14,8 +14,7 @@ class ListarProducts extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<Product> dataProduct = ref.watch(productNotifierProvider).product;
     bool isLoading = ref.watch(productNotifierProvider).isLoading;
-    double widthh = MediaQuery.of(context).size.width;
-    double heightt = MediaQuery.of(context).size.height;
+
     //print(data_product);
     return Column(
       children: [

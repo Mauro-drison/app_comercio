@@ -1,6 +1,5 @@
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
-import 'package:app_comercio/feature/products/presentation/pages/home/home.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,11 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back));
+    return IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override
@@ -139,7 +142,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
                             } else {
                               ref
                                   .watch(productNotifierProvider.notifier)
-                                  .carritoProducts(index, product);
+                                  .carritoProducts(index, _filter);
                             }
                           },
                         ),
@@ -270,7 +273,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
                             } else {
                               ref
                                   .watch(productNotifierProvider.notifier)
-                                  .carritoProducts(index, product[index]);
+                                  .carritoProducts(index, _filter);
                             }
                           },
                         ),

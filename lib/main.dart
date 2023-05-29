@@ -1,6 +1,4 @@
-import 'package:app_comercio/core/routes/pages.dart';
 import 'package:app_comercio/core/routes/routes.dart';
-import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/core/services/notification_services.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

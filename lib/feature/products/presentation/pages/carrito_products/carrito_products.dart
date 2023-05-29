@@ -58,6 +58,7 @@ class CarritoProducts extends ConsumerWidget {
                       ),
                       TextButton(
                         onPressed: () async {
+                          Navigator.pop(context);
                           ref
                               .watch(productNotifierProvider.notifier)
                               .comprarProdutsDelCarrito(
@@ -83,7 +84,6 @@ class CarritoProducts extends ConsumerWidget {
 
                           // Find the ScaffoldMessenger in the widget tree
                           // and use it to show a SnackBar.
-                          Navigator.pop(context, 'comprado');
                         },
                         child: const Text('OK'),
                       ),

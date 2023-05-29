@@ -19,7 +19,6 @@ class PageEditarProdut extends ConsumerStatefulWidget {
 }
 
 class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
-  late ProductModel productos;
   final _formKey = GlobalKey<FormState>();
   //late final Product productos;
   //final name = TextEditingController();
@@ -168,7 +167,20 @@ class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
                       ref
                           .watch(productNotifierProvider.notifier)
                           .modificarProducto(productos);
+                      final snackBar = SnackBar(
+                        duration: const Duration(milliseconds: 300),
+                        content: const Text(
+                            // ignore: unnecessary_string_interpolations
+                            'Producto modificado'),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
 
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       //ref.watch(getProductData);
                     }
                   },

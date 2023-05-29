@@ -5,18 +5,16 @@ import 'package:app_comercio/core/endpoint.dart';
 import 'package:intl/intl.dart';
 
 class ProductRemoteDatasource implements IProductRemoteDatasource {
-  final String _url = Endpoint.endpointproduct;
+  final String _url = Endpoint.endpointMockachinoProduct;
   //final String _url = 'https://www.mockachino.com/676b7631-1fb0-4f/product';
   @override
   Future<List<ProductModel>> requestProducts() async {
     Response response = await Dio().get(_url);
-    print(response);
+
     if (response.statusCode == 200) {
-      print("primera respuesta");
       DateTime time = DateTime.now();
-      print(time);
+
       final List result = response.data['products'];
-      print("RESPUESTA $result");
 
       return result.map((e) => ProductModel.fromJson(e)).toList();
     } else {

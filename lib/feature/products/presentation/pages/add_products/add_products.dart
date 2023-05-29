@@ -48,7 +48,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 30, left: 60, right: 30),
+        padding: const EdgeInsets.only(top: 30, left: 60, right: 30),
         child: Form(
             key: _formKey,
             child: ListView(
@@ -149,10 +149,24 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                           startDate: startDate.text,
                           endingDate: startDate.text);
 
-                      ref
+                      var agregar = ref
                           .watch(productNotifierProvider.notifier)
                           .agregarProductos(producto);
-                      //ref.watch(getProductData);
+                      print("esto es de la pantalla $agregar");
+                      final snackBar = SnackBar(
+                        duration: const Duration(milliseconds: 300),
+                        content: const Text(
+                            // ignore: unnecessary_string_interpolations
+                            'Producto agregado'),
+                        action: SnackBarAction(
+                          label: 'Undo',
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      );
+
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
                   },
                   child: const Text('GUARDAR'),

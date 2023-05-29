@@ -6,6 +6,7 @@ import 'package:app_comercio/feature/products/data/repository/product_provider.d
 import 'package:app_comercio/feature/products/data/repository/product_repository_firebase.dart';
 
 import 'package:app_comercio/feature/products/domain/products_provider.dart';
+import 'package:app_comercio/feature/products/domain/usecases/delete_product.dart';
 import 'package:app_comercio/feature/products/domain/usecases/get_product.dart';
 import 'package:app_comercio/feature/products/domain/usecases/post_product.dart';
 import 'package:app_comercio/feature/products/domain/usecases/put_product.dart';
@@ -15,7 +16,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ProductNotifier extends StateNotifier<ProductState> {
   // Notifier constructor - funciones de llamada en la inicialización del proveedor
   ProductNotifier() : super(const ProductState()) {
-    print("estado inmutable");
     getProduct();
   }
   double suma = 0;
@@ -24,7 +24,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
   getProduct() async {
     state = state.copyWith(isLoading: true);
-    print("obtener productos");
+
     //final moviesList = await MovieService().fetchMovies();
     // Convert list to list of movies using the movie class constructor
     //final movies = moviesList.map((e) => Movie.fromJson(e)).toList();
@@ -33,9 +33,9 @@ class ProductNotifier extends StateNotifier<ProductState> {
     final product =
         await GetProducts(ProductRepository(ProductRemoteDatasource()))
             .getProducts();
-    print("ESTADO PRODUCTOS $product");
+
     state = state.copyWith(product: product, isLoading: false);
-    agregarProductosSinStock(product);
+    inicioAgregarProductosSinStock(product);
   }
 
   agregarProductos(producto) async {
@@ -43,9 +43,13 @@ class ProductNotifier extends StateNotifier<ProductState> {
     final product =
         await PostProductos(ProductRepository(ProductRemoteDatasource()))
             .postProductos(producto);
-    final productos = List<ProductModel>.from(state.product);
-    productos.add(producto);
+    final productos =
+        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+            .getProducts();
+    agregarProductosSinStock(productos);
+
     state = state.copyWith(product: productos, isLoading: false);
+    return product;
   }
 
   agregarProductoStateEliminarModificar(producto) async {
@@ -58,14 +62,29 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
 //primera lista vacia
   agregarProductosSinStock(product) {
+    final productosSinStockk = List<ProductModel>.from(state.productSinStock);
+    productosSinStockk.clear();
+    for (var i in product) {
+      //for (var istock in state.productSinStock) {
+      //if (i.id != istock.id) {
+      if (i.quantity == 0) {
+        productosSinStockk.add(i);
+        state = state.copyWith(productSinStock: productosSinStockk);
+      }
+      // }
+      //}
+    }
+  }
+
+  inicioAgregarProductosSinStock(product) {
+    final productosSinStockk = List<ProductModel>.from(state.productSinStock);
+    productosSinStockk.clear();
     for (var i in product) {
       //for (var istock in state.productSinStock) {
       //if (i.id != istock.id) {
       if (i.quantity == 0) {
         showNotificacion();
-        print(i.name);
-        final productosSinStockk =
-            List<ProductModel>.from(state.productSinStock);
+
         productosSinStockk.add(i);
         state = state.copyWith(productSinStock: productosSinStockk);
       }
@@ -79,16 +98,32 @@ class ProductNotifier extends StateNotifier<ProductState> {
     final product =
         await PutProductos(ProductRepository(ProductRemoteDatasource()))
             .putProductos(productos);
+    final producto =
+        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+            .getProducts();
+
+    agregarProductosSinStock(producto);
+    state = state.copyWith(product: producto);
+  }
+
+  eliminarProductos(producto) async {
+    final product =
+        await DeleteProductos(ProductRepository(ProductRemoteDatasource()))
+            .deleteProductos(producto);
+    final productos =
+        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+            .getProducts();
+
+    state = state.copyWith(product: productos);
   }
 
   carritoProducts(index, products) async {
     final product = List<ProductModel>.from(state.productCarrito);
     product.add(products[index]);
-    print(products[index].price);
+
     suma = products[index].price + state.totalCompra;
-    print(suma);
+
     state = state.copyWith(productCarrito: product, totalCompra: suma);
-    print("state $product");
   }
 
   carritoProductsCancel(index, products) async {
@@ -125,7 +160,6 @@ class ProductNotifier extends StateNotifier<ProductState> {
         // ignore: empty_statements
         for (var xx in products) {
           if (x.id == xx.id) {
-            print("el producto es correcto ${x.name}");
             reducProducQuantity = xx.quantity - 1;
             xx.quantity = reducProducQuantity;
             // ignore: unused_local_variable
@@ -138,13 +172,17 @@ class ProductNotifier extends StateNotifier<ProductState> {
                 productCarrito: productos,
                 totalCompra: suma,
                 estadoQuantity: true);
-
-            print("completo");
           } else {
             print(x.name);
           }
         }
       }
     }
+    final productos =
+        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+            .getProducts();
+
+    agregarProductosSinStock(productos);
+    state = state.copyWith(product: productos);
   }
 }

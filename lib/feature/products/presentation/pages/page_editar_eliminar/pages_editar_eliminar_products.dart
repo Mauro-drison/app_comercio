@@ -16,14 +16,6 @@ class Pages_editar_eliminar_products extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // ignore: unused_local_variable
     List<Product> dataProduct = ref.watch(productNotifierProvider).product;
-    bool isLoading = ref.watch(productNotifierProvider).isLoading;
-
-    double widthh = MediaQuery.of(context).size.width;
-    double heightt = MediaQuery.of(context).size.height;
-    List<Product> carritoProducto =
-        ref.watch(productNotifierProvider).productCarrito;
-    List<Product> productosSinStockk =
-        ref.watch(productNotifierProvider).productSinStock;
     //print(data_product);
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 183, 204, 235),
@@ -49,8 +41,6 @@ class ListarProducts extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<Product> dataProduct = ref.watch(productNotifierProvider).product;
     bool isLoading = ref.watch(productNotifierProvider).isLoading;
-    double widthh = MediaQuery.of(context).size.width;
-    double heightt = MediaQuery.of(context).size.height;
     //print(data_product);
     return Column(
       children: [
@@ -64,8 +54,8 @@ class ListarProducts extends ConsumerWidget {
                     return Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
-                        width: widthh * 0.36,
-                        height: heightt * 0.16,
+                        width: 100.0,
+                        height: 100.0,
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
@@ -77,9 +67,8 @@ class ListarProducts extends ConsumerWidget {
                               Padding(
                                 padding: const EdgeInsets.all(2.0),
                                 child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.14,
-                                  width: 160,
+                                  height: 100.0,
+                                  width: 155,
                                   //MediaQuery.of(context).size.width * 0.34,
                                   child: Image.network(dataProduct[index].image,
                                       fit: BoxFit.fill),
@@ -128,25 +117,9 @@ class ListarProducts extends ConsumerWidget {
                               ),
                               Container(
                                 child: Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            5, 10, 0, 0),
-                                        child: Text(
-                                          // ignore: prefer_interpolation_to_compose_strings
-                                          "PRECIO: \$" +
-                                              dataProduct[index]
-                                                  .price
-                                                  .toString(),
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5.0,
-                                      ),
                                       Expanded(
                                         child: IconButton(
                                           color: Colors.green,
@@ -187,6 +160,14 @@ class ListarProducts extends ConsumerWidget {
                                                   TextButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
+
+                                                      ref
+                                                          .watch(
+                                                              productNotifierProvider
+                                                                  .notifier)
+                                                          .eliminarProductos(
+                                                              dataProduct[
+                                                                  index]);
 
                                                       final snackBar = SnackBar(
                                                         content: Text(

@@ -34,7 +34,7 @@ class HomePage extends ConsumerWidget {
           //automaticallyImplyLeading: false,
           title: ListTile(
               title: Text(
-                'Lista de Productos',
+                'Buscar',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               onTap: () {
