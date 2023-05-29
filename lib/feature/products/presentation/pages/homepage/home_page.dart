@@ -31,7 +31,7 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 183, 204, 235),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          //automaticallyImplyLeading: false,
           title: ListTile(
               title: Text(
                 'Lista de Productos',

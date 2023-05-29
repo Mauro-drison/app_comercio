@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 //Importar archivo congelado (tal vez aún no generado)
@@ -15,6 +17,7 @@ abstract class ProductState with _$ProductState {
     @Default(0) double totalCompra,
     @Default(true) bool estadoQuantity,
     @Default([]) List<Product> productSinStock,
+    @Default(Product) updelProducts,
   }) = _ProductState;
 
   const ProductState._();

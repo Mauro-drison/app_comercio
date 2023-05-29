@@ -22,6 +22,7 @@ mixin _$ProductState {
   double get totalCompra => throw _privateConstructorUsedError;
   bool get estadoQuantity => throw _privateConstructorUsedError;
   List<Product> get productSinStock => throw _privateConstructorUsedError;
+  dynamic get updelProducts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductStateCopyWith<ProductState> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $ProductStateCopyWith<$Res> {
       List<Product> productCarrito,
       double totalCompra,
       bool estadoQuantity,
-      List<Product> productSinStock});
+      List<Product> productSinStock,
+      dynamic updelProducts});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
     Object? totalCompra = null,
     Object? estadoQuantity = null,
     Object? productSinStock = null,
+    Object? updelProducts = freezed,
   }) {
     return _then(_value.copyWith(
       product: null == product
@@ -88,6 +91,10 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
           ? _value.productSinStock
           : productSinStock // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      updelProducts: freezed == updelProducts
+          ? _value.updelProducts
+          : updelProducts // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$_ProductStateCopyWith<$Res>
       List<Product> productCarrito,
       double totalCompra,
       bool estadoQuantity,
-      List<Product> productSinStock});
+      List<Product> productSinStock,
+      dynamic updelProducts});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$_ProductStateCopyWithImpl<$Res>
     Object? totalCompra = null,
     Object? estadoQuantity = null,
     Object? productSinStock = null,
+    Object? updelProducts = freezed,
   }) {
     return _then(_$_ProductState(
       product: null == product
@@ -152,6 +161,8 @@ class __$$_ProductStateCopyWithImpl<$Res>
           ? _value._productSinStock
           : productSinStock // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      updelProducts:
+          freezed == updelProducts ? _value.updelProducts! : updelProducts,
     ));
   }
 }
@@ -165,7 +176,8 @@ class _$_ProductState extends _ProductState {
       final List<Product> productCarrito = const [],
       this.totalCompra = 0,
       this.estadoQuantity = true,
-      final List<Product> productSinStock = const []})
+      final List<Product> productSinStock = const [],
+      this.updelProducts = Product})
       : _product = product,
         _productCarrito = productCarrito,
         _productSinStock = productSinStock,
@@ -208,8 +220,12 @@ class _$_ProductState extends _ProductState {
   }
 
   @override
+  @JsonKey()
+  final dynamic updelProducts;
+
+  @override
   String toString() {
-    return 'ProductState(product: $product, isLoading: $isLoading, productCarrito: $productCarrito, totalCompra: $totalCompra, estadoQuantity: $estadoQuantity, productSinStock: $productSinStock)';
+    return 'ProductState(product: $product, isLoading: $isLoading, productCarrito: $productCarrito, totalCompra: $totalCompra, estadoQuantity: $estadoQuantity, productSinStock: $productSinStock, updelProducts: $updelProducts)';
   }
 
   @override
@@ -227,7 +243,9 @@ class _$_ProductState extends _ProductState {
             (identical(other.estadoQuantity, estadoQuantity) ||
                 other.estadoQuantity == estadoQuantity) &&
             const DeepCollectionEquality()
-                .equals(other._productSinStock, _productSinStock));
+                .equals(other._productSinStock, _productSinStock) &&
+            const DeepCollectionEquality()
+                .equals(other.updelProducts, updelProducts));
   }
 
   @override
@@ -238,7 +256,8 @@ class _$_ProductState extends _ProductState {
       const DeepCollectionEquality().hash(_productCarrito),
       totalCompra,
       estadoQuantity,
-      const DeepCollectionEquality().hash(_productSinStock));
+      const DeepCollectionEquality().hash(_productSinStock),
+      const DeepCollectionEquality().hash(updelProducts));
 
   @JsonKey(ignore: true)
   @override
@@ -254,7 +273,8 @@ abstract class _ProductState extends ProductState {
       final List<Product> productCarrito,
       final double totalCompra,
       final bool estadoQuantity,
-      final List<Product> productSinStock}) = _$_ProductState;
+      final List<Product> productSinStock,
+      final dynamic updelProducts}) = _$_ProductState;
   const _ProductState._() : super._();
 
   @override
@@ -269,6 +289,8 @@ abstract class _ProductState extends ProductState {
   bool get estadoQuantity;
   @override
   List<Product> get productSinStock;
+  @override
+  dynamic get updelProducts;
   @override
   @JsonKey(ignore: true)
   _$$_ProductStateCopyWith<_$_ProductState> get copyWith =>

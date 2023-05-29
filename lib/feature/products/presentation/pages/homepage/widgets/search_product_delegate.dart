@@ -2,12 +2,15 @@ import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
 import 'package:app_comercio/feature/products/presentation/pages/home/home.dart';
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
+import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SearchProductsDelegate extends SearchDelegate<Product> {
   final List<Product> product;
   List<Product> _filter = [];
-  SearchProductsDelegate(this.product, ref);
+  SearchProductsDelegate(this.product, this.ref);
+  WidgetRef ref;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -134,9 +137,9 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             } else {
-                              //ref
-                              //    .watch(productNotifierProvider.notifier)
-                              //    .carritoProducts(index, dataProduct);
+                              ref
+                                  .watch(productNotifierProvider.notifier)
+                                  .carritoProducts(index, product);
                             }
                           },
                         ),
@@ -265,9 +268,9 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             } else {
-                              //ref
-                              //    .watch(productNotifierProvider.notifier)
-                              //    .carritoProducts(index, dataProduct);
+                              ref
+                                  .watch(productNotifierProvider.notifier)
+                                  .carritoProducts(index, product[index]);
                             }
                           },
                         ),

@@ -1,8 +1,10 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
+import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/presentation/pages/add_products/add_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
-import 'package:app_comercio/feature/products/presentation/pages/eliminar_products/editar_product.dart';
-import 'package:app_comercio/feature/products/presentation/pages/eliminar_products/pages_editar_eliminar_products.dart';
+import 'package:app_comercio/feature/products/presentation/pages/editar_products/editar_products.dart';
+import 'package:app_comercio/feature/products/presentation/pages/page_editar_eliminar/editar_product.dart';
+import 'package:app_comercio/feature/products/presentation/pages/page_editar_eliminar/pages_editar_eliminar_products.dart';
 
 import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
 import 'package:app_comercio/feature/products/presentation/pages/productosSinStock/productos_sin_stock.dart';
@@ -51,8 +53,9 @@ class RouterNotifier extends ChangeNotifier {
     final user = _ref.read(routeProvider);
     print("estado ${user?.nameR}");
     // Desde aquí podemos usar el estado e implementar nuestra lógica personalizada.
-    final areWeLoggingIn = state.location == '/';
-
+    print("${state.location}");
+    var areWeLoggingIn = state.location == '/';
+    print(areWeLoggingIn);
     // ignore: unnecessary_null_comparison, unrelated_type_equality_checks
     if (user == null || user.nameR == "route1") {
       return areWeLoggingIn ? null : '/';
@@ -74,11 +77,13 @@ class RouterNotifier extends ChangeNotifier {
     }
     if (user.nameR == "route5") {
       if (areWeLoggingIn) return '/pages_editar_eliminar_products';
+      areWeLoggingIn = true;
       print("-------------carr-----------------");
     }
     if (user.nameR == "route6") {
-      if (areWeLoggingIn)
-        return '/pages_editar_eliminar_products/editar_product';
+      if (areWeLoggingIn == false && state.location != "/editar_products")
+        return '/editar_products';
+
       print("-------------carr-----------------");
     }
     // There's no need for a redirect at this point.
@@ -112,9 +117,9 @@ class RouterNotifier extends ChangeNotifier {
           builder: (context, _) => const Pages_editar_eliminar_products(),
         ),
         GoRoute(
-          name: "editar_product",
-          path: '/pages_editar_eliminar_products/editar_product',
-          builder: (context, _) => const EditarProduct(),
+          name: "editar_products",
+          path: '/editar_products',
+          builder: (context, _) => PageEditarProdut(),
         ),
       ];
 }

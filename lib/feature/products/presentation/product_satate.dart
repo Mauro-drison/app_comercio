@@ -7,6 +7,8 @@ import 'package:app_comercio/feature/products/data/repository/product_repository
 
 import 'package:app_comercio/feature/products/domain/products_provider.dart';
 import 'package:app_comercio/feature/products/domain/usecases/get_product.dart';
+import 'package:app_comercio/feature/products/domain/usecases/post_product.dart';
+import 'package:app_comercio/feature/products/domain/usecases/put_product.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -38,10 +40,20 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
   agregarProductos(producto) async {
     state = state.copyWith(isLoading: true);
-    final product = await ProductRemoteDatasource().crearProducto(producto);
+    final product =
+        await PostProductos(ProductRepository(ProductRemoteDatasource()))
+            .postProductos(producto);
     final productos = List<ProductModel>.from(state.product);
     productos.add(producto);
     state = state.copyWith(product: productos, isLoading: false);
+  }
+
+  agregarProductoStateEliminarModificar(producto) async {
+    final productos = state.updelProducts;
+
+    state = state.copyWith(updelProducts: producto);
+
+    //state = state.copyWith(updelProducts: productos);
   }
 
 //primera lista vacia
@@ -63,7 +75,10 @@ class ProductNotifier extends StateNotifier<ProductState> {
   }
 
   modificarProducto(productos) async {
-    //final product = await ProductRemoteDatasource().modificarProducto(producto);
+    // ignore: unused_local_variable
+    final product =
+        await PutProductos(ProductRepository(ProductRemoteDatasource()))
+            .putProductos(productos);
   }
 
   carritoProducts(index, products) async {

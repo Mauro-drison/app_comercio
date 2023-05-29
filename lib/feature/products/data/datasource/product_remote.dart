@@ -5,7 +5,7 @@ import 'package:app_comercio/core/endpoint.dart';
 import 'package:intl/intl.dart';
 
 class ProductRemoteDatasource implements IProductRemoteDatasource {
-  final String _url = Endpoint.endpointMockachinoProduct;
+  final String _url = Endpoint.endpointproduct;
   //final String _url = 'https://www.mockachino.com/676b7631-1fb0-4f/product';
   @override
   Future<List<ProductModel>> requestProducts() async {
@@ -39,6 +39,7 @@ class ProductRemoteDatasource implements IProductRemoteDatasource {
   @override
   Future<Map<String, dynamic>> modificarProducto(ProductModel producto) async {
     try {
+      // ignore: unused_local_variable
       final resp =
           await Dio().put("$_url/${producto.id}", data: producto.toJson());
 

@@ -155,6 +155,11 @@ class ListarProducts extends ConsumerWidget {
                                             ref
                                                 .read(routeProvider.notifier)
                                                 .editar_product();
+                                            ref
+                                                .watch(productNotifierProvider
+                                                    .notifier)
+                                                .agregarProductoStateEliminarModificar(
+                                                    dataProduct[index]);
                                           },
                                         ),
                                       ),
