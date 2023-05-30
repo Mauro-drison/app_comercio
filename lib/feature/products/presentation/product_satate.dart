@@ -1,9 +1,8 @@
 import 'package:app_comercio/core/services/notification_services.dart';
-import 'package:app_comercio/feature/products/data/datasource/product_remote.dart';
+
 import 'package:app_comercio/feature/products/data/datasource/product_remote_datasource_firebase.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/data/repository/product_provider.dart';
-import 'package:app_comercio/feature/products/data/repository/product_repository_firebase.dart';
 
 import 'package:app_comercio/feature/products/domain/products_provider.dart';
 import 'package:app_comercio/feature/products/domain/usecases/delete_product.dart';
@@ -31,7 +30,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
     // Update state in provider
     //final product = await ProductRemoteDatasource().requestProducts();
     final product =
-        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+        await GetProducts(ProductRepository(ProductRemoteDatasourceFirebase()))
             .getProducts();
 
     state = state.copyWith(product: product, isLoading: false);
@@ -40,11 +39,11 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
   agregarProductos(producto) async {
     state = state.copyWith(isLoading: true);
-    final product =
-        await PostProductos(ProductRepository(ProductRemoteDatasource()))
-            .postProductos(producto);
+    final product = await PostProductos(
+            ProductRepository(ProductRemoteDatasourceFirebase()))
+        .postProductos(producto);
     final productos =
-        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+        await GetProducts(ProductRepository(ProductRemoteDatasourceFirebase()))
             .getProducts();
     agregarProductosSinStock(productos);
 
@@ -96,10 +95,10 @@ class ProductNotifier extends StateNotifier<ProductState> {
   modificarProducto(productos) async {
     // ignore: unused_local_variable
     final product =
-        await PutProductos(ProductRepository(ProductRemoteDatasource()))
+        await PutProductos(ProductRepository(ProductRemoteDatasourceFirebase()))
             .putProductos(productos);
     final producto =
-        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+        await GetProducts(ProductRepository(ProductRemoteDatasourceFirebase()))
             .getProducts();
 
     agregarProductosSinStock(producto);
@@ -107,11 +106,11 @@ class ProductNotifier extends StateNotifier<ProductState> {
   }
 
   eliminarProductos(producto) async {
-    final product =
-        await DeleteProductos(ProductRepository(ProductRemoteDatasource()))
-            .deleteProductos(producto);
+    final product = await DeleteProductos(
+            ProductRepository(ProductRemoteDatasourceFirebase()))
+        .deleteProductos(producto);
     final productos =
-        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+        await GetProducts(ProductRepository(ProductRemoteDatasourceFirebase()))
             .getProducts();
 
     state = state.copyWith(product: productos);
@@ -159,12 +158,17 @@ class ProductNotifier extends StateNotifier<ProductState> {
       } else {
         // ignore: empty_statements
         for (var xx in products) {
+          //print("${xx.id}, ${xx.quantity}");
+          //print("comprar prodctos");
+          //print("comprar prodctos ${x.id}, ${xx.id}");
           if (x.id == xx.id) {
             reducProducQuantity = xx.quantity - 1;
             xx.quantity = reducProducQuantity;
+
             // ignore: unused_local_variable
-            final product =
-                await ProductRemoteDatasource().modificarProducto(xx);
+            final product = await PutProductos(
+                    ProductRepository(ProductRemoteDatasourceFirebase()))
+                .putProductos(xx);
             final productos = List<ProductModel>.from(state.productCarrito);
             productos.remove(xx);
             suma = 0;
@@ -179,7 +183,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
       }
     }
     final productos =
-        await GetProducts(ProductRepository(ProductRemoteDatasource()))
+        await GetProducts(ProductRepository(ProductRemoteDatasourceFirebase()))
             .getProducts();
 
     agregarProductosSinStock(productos);

@@ -141,13 +141,13 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ProductModel producto = ProductModel(
-                          id: 1,
+                          id: "1",
                           name: name.text,
                           image: image.text,
                           price: double.parse(price.text),
                           quantity: int.parse(quantity.text),
-                          startDate: startDate.text,
-                          endingDate: startDate.text);
+                          startDate: "12/12/2023",
+                          endingDate: "12/12/2023");
 
                       var agregar = ref
                           .watch(productNotifierProvider.notifier)

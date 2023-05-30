@@ -8,7 +8,7 @@ abstract class Product {
       required this.quantity,
       required this.image});
 
-  int id;
+  String id;
 
   String name;
 

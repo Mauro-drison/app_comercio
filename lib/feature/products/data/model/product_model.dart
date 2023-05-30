@@ -19,7 +19,7 @@ class ProductModel implements Product {
       required this.image});
 
   @override
-  int id;
+  String id;
   @override
   String name;
   @override
@@ -46,8 +46,8 @@ class ProductModel implements Product {
         "id": id,
         "name": name,
         "price": price,
-        //"startDate": dateToString(startDate),
-        //"endingDate": dateToString(endingDate),
+        "start_date": startDate,
+        "ending_date": endingDate,
         "quantity": quantity,
         "image": image
       };

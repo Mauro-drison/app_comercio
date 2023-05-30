@@ -1,10 +1,11 @@
+import 'package:app_comercio/feature/products/data/datasource/Iproduct_remote_datasource_firebase.dart';
 import 'package:app_comercio/feature/products/data/datasource/iproduct_remote.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
 import 'package:app_comercio/feature/products/domain/repository/iproduc_repository.dart';
 
 class ProductRepository implements IProductRepository {
-  final IProductRemoteDatasource remoteDatasource;
+  final IProductRemoteDatasourceFirebase remoteDatasource;
 
   ProductRepository(this.remoteDatasource);
 
@@ -22,6 +23,7 @@ class ProductRepository implements IProductRepository {
 
   @override
   Future<Map<String, dynamic>> modificarProductos(ProductModel product) {
+    print("modificando el stock");
     return remoteDatasource.modificarProducto(product);
   }
 
