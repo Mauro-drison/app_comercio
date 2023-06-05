@@ -13,10 +13,10 @@ class ProductRemoteDatasourceFirebase
   Future<List<ProductModel>> requestProducts() async {
     final url = '$_url/product.json';
     Response response = await Dio().get(url);
-    print("datarouce");
+
     if (response.statusCode == 200) {
       Map data = response.data;
-      print("datarouce");
+
       // ignore: unnecessary_null_comparison
       if (data == null) return [];
 
@@ -45,6 +45,7 @@ class ProductRemoteDatasourceFirebase
   Future<Map<String, dynamic>> crearProducto(ProductModel producto) async {
     try {
       final url = '$_url/product.json';
+      // ignore: unused_local_variable
       final resp = await Dio().post(url, data: producto.toJson());
 
       return {'ok': true};
@@ -56,11 +57,9 @@ class ProductRemoteDatasourceFirebase
 
   @override
   Future<Map<String, dynamic>> eliminarProducto(ProductModel product) async {
-    print("datasource eliminar");
-    print("${product.id}");
     try {
-      print("datasource eliminar");
       final url = '$_url/product/${product.id}.json';
+      // ignore: unused_local_variable
       final resp = await Dio().delete(url, data: product.toJson());
 
       return {'ok': true};

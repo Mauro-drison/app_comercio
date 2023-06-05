@@ -12,7 +12,7 @@ abstract class Product {
 
   String name;
 
-  double price;
+  num price;
 
   String startDate;
 

@@ -23,7 +23,7 @@ class ProductModel implements Product {
   @override
   String name;
   @override
-  double price;
+  num price;
   @override
   String startDate;
   @override

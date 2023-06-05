@@ -1,15 +1,17 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/data/model/product_model.dart';
-import 'package:app_comercio/feature/products/domain/entities/product.dart';
+
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
 
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:app_comercio/utils/utils.dart' as utils;
 
 class PageEditarProdut extends ConsumerStatefulWidget {
   //final Product productos;
-  PageEditarProdut({Key? key});
+  // ignore: use_key_in_widget_constructors
+  const PageEditarProdut({Key? key});
 
   // ignore: non_constant_identifier_names
   final String TAG = "-------------------------";
@@ -54,7 +56,7 @@ class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 30, left: 60, right: 30),
+        padding: const EdgeInsets.only(top: 30, left: 60, right: 30),
         child: Form(
             key: _formKey,
             child: ListView(
@@ -63,7 +65,7 @@ class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'nombre',
                   ),
@@ -84,7 +86,7 @@ class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'imagen',
                   ),
@@ -106,7 +108,7 @@ class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
                   height: 5.0,
                 ),
                 TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'precio',
                     ),
@@ -127,7 +129,7 @@ class _StatefulBottomSheetState extends ConsumerState<PageEditarProdut> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'cantidad',
                   ),

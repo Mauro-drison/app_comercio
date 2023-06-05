@@ -1,13 +1,14 @@
 import 'package:app_comercio/core/routes/routes.dart';
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/core/services/notification_services.dart';
-import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
+
 import 'package:app_comercio/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DrawerHome extends ConsumerStatefulWidget {
   //final Product productos;
+  // ignore: use_key_in_widget_constructors
   const DrawerHome({Key? key});
 
   @override

@@ -1,6 +1,6 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
-import 'package:app_comercio/feature/products/presentation/product_satate.dart';
+
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,8 +17,7 @@ class CarritoProducts extends ConsumerWidget {
     // ignore: unused_local_variable
     List<Product> carritoProducts =
         ref.watch(productNotifierProvider).productCarrito;
-    List<Product> productosSinStock =
-        ref.watch(productNotifierProvider).productSinStock;
+
     // ignore: unused_local_variable
     var medida = MediaQuery.of(context);
     var sumaProductos = ref.watch(productNotifierProvider).totalCompra;
@@ -112,7 +111,7 @@ class CarritoProducts extends ConsumerWidget {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: Color.fromARGB(255, 56, 64, 70)),
+                color: const Color.fromARGB(255, 56, 64, 70)),
             height: 80.0,
             child: Center(
               child: ListTile(

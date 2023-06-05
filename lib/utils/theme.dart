@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // THEME PROVIDERS
 final theme = Provider((ref) => _theme);
 final darkTheme = Provider((ref) => _darkTheme);
-final themeMode = StateProvider((ref) => ThemeMode.light);
+final themeMode = StateProvider((ref) => ThemeMode.dark);
 
 // THEMES
 // light

@@ -1,10 +1,7 @@
-// ignore_for_file: sized_box_for_whitespace
-
-import 'package:app_comercio/core/routes/routes.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ListarProducts extends ConsumerWidget {
@@ -29,7 +26,7 @@ class ListarProducts extends ConsumerWidget {
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
                         width: 100.0,
-                        height: 100.0,
+                        height: 120.0,
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6.0),
@@ -42,8 +39,8 @@ class ListarProducts extends ConsumerWidget {
                               Padding(
                                 padding: const EdgeInsets.all(2.0),
                                 child: SizedBox(
-                                  height: 100.0,
-                                  width: 155,
+                                  height: 118.0,
+                                  width: 152,
                                   //MediaQuery.of(context).size.width * 0.34,
                                   child: Image.network(dataProduct[index].image,
                                       fit: BoxFit.fill),

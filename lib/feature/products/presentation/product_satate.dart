@@ -176,9 +176,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
                 productCarrito: productos,
                 totalCompra: suma,
                 estadoQuantity: true);
-          } else {
-            print(x.name);
-          }
+          } else {}
         }
       }
     }

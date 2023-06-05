@@ -21,8 +21,6 @@ class ProductosSinStock extends ConsumerWidget {
         ref.watch(productNotifierProvider).productSinStock;
     // ignore: unused_local_variable
     var medida = MediaQuery.of(context);
-    var sumaProductos = ref.watch(productNotifierProvider).totalCompra;
-    bool estadoQuantity = ref.watch(productNotifierProvider).estadoQuantity;
 
     return Scaffold(
       appBar: AppBar(

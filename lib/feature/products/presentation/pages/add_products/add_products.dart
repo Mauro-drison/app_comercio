@@ -8,7 +8,8 @@ import 'package:app_comercio/utils/utils.dart' as utils;
 
 class AgregarProductos extends ConsumerStatefulWidget {
   //final Product productos;
-  AgregarProductos({Key? key});
+  // ignore: use_key_in_widget_constructors
+  const AgregarProductos({Key? key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -57,7 +58,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'nombre',
                   ),
@@ -75,7 +76,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'imagen',
                   ),
@@ -93,7 +94,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'precio',
                   ),
@@ -115,7 +116,7 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                   height: 5.0,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'cantidad',
                   ),
@@ -149,10 +150,11 @@ class _StatefulBottomSheetState extends ConsumerState<AgregarProductos> {
                           startDate: "12/12/2023",
                           endingDate: "12/12/2023");
 
+                      // ignore: unused_local_variable
                       var agregar = ref
                           .watch(productNotifierProvider.notifier)
                           .agregarProductos(producto);
-                      print("esto es de la pantalla $agregar");
+
                       final snackBar = SnackBar(
                         duration: const Duration(milliseconds: 300),
                         content: const Text(

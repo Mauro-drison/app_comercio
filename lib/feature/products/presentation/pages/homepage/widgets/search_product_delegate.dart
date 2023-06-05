@@ -1,6 +1,5 @@
-import 'package:app_comercio/feature/products/data/model/product_model.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
-import 'package:app_comercio/feature/products/presentation/pages/homepage/home_page.dart';
+
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -39,6 +38,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(2.0),
+          // ignore: sized_box_for_whitespace
           child: Container(
             width: 100.0,
             height: 100.0,
@@ -81,6 +81,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
                           ),
                         ),
                         Expanded(
+                          // ignore: sized_box_for_whitespace
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: Padding(
@@ -161,6 +162,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    // ignore: avoid_types_as_parameter_names
     _filter = product.where((Product) {
       return Product.name.toLowerCase().contains(query.trim().toLowerCase());
     }).toList();
@@ -170,6 +172,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(2.0),
+          // ignore: sized_box_for_whitespace
           child: Container(
             width: 100.0,
             height: 100.0,
@@ -212,6 +215,7 @@ class SearchProductsDelegate extends SearchDelegate<Product> {
                           ),
                         ),
                         Expanded(
+                          // ignore: sized_box_for_whitespace
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: Padding(

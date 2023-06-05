@@ -1,16 +1,14 @@
-import 'package:app_comercio/core/routes/routes.dart';
 import 'package:app_comercio/feature/products/domain/entities/product.dart';
+import 'package:app_comercio/feature/products/presentation/pages/page_editar_eliminar/search_products_delegate_editanddelete.dart';
 import 'package:app_comercio/feature/products/product_provider/product_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:app_comercio/core/routes/state_routes.dart';
 
-import 'package:badges/badges.dart' as badges;
-
-class Pages_editar_eliminar_products extends ConsumerWidget {
-  const Pages_editar_eliminar_products({Key? key}) : super(key: key);
+class PagesEditarEliminarProducts extends ConsumerWidget {
+  const PagesEditarEliminarProducts({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +18,17 @@ class Pages_editar_eliminar_products extends ConsumerWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 183, 204, 235),
         appBar: AppBar(
-          title: const Text('Lista de Productos'),
+          title: ListTile(
+              title: Text(
+                'Buscar',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              onTap: () {
+                showSearch(
+                    context: context,
+                    delegate:
+                        SearchProductsDelegateEditandDelete(dataProduct, ref));
+              }),
           leading: IconButton(
             tooltip: 'Previous choice',
             icon: const Icon(Icons.arrow_back),
@@ -55,7 +63,7 @@ class ListarProducts extends ConsumerWidget {
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
                         width: 100.0,
-                        height: 100.0,
+                        height: 120.0,
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
@@ -67,8 +75,8 @@ class ListarProducts extends ConsumerWidget {
                               Padding(
                                 padding: const EdgeInsets.all(2.0),
                                 child: SizedBox(
-                                  height: 100.0,
-                                  width: 155,
+                                  height: 118.0,
+                                  width: 152,
                                   //MediaQuery.of(context).size.width * 0.34,
                                   child: Image.network(dataProduct[index].image,
                                       fit: BoxFit.fill),
@@ -76,19 +84,22 @@ class ListarProducts extends ConsumerWidget {
                               ),
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.5,
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            10, 10, 0, 0),
-                                        child: Text(
-                                          dataProduct[index].name,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                    Expanded(
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.5,
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 10, 0, 0),
+                                          child: Text(
+                                            dataProduct[index].name,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -170,7 +181,7 @@ class ListarProducts extends ConsumerWidget {
                                                                   index]);
 
                                                       final snackBar = SnackBar(
-                                                        content: Text(
+                                                        content: const Text(
                                                             // ignore: unnecessary_string_interpolations
                                                             'Producto eliminado'),
                                                         action: SnackBarAction(

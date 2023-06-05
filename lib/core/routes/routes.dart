@@ -1,5 +1,5 @@
 import 'package:app_comercio/core/routes/state_routes.dart';
-import 'package:app_comercio/feature/products/data/model/product_model.dart';
+
 import 'package:app_comercio/feature/products/presentation/pages/add_products/add_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/carrito_products/carrito_products.dart';
 import 'package:app_comercio/feature/products/presentation/pages/editar_products/editar_products.dart';
@@ -10,6 +10,7 @@ import 'package:app_comercio/feature/products/presentation/pages/homepage/home_p
 import 'package:app_comercio/feature/products/presentation/pages/productosSinStock/productos_sin_stock.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Cachés y Expone un [GoRouter]
@@ -96,7 +97,7 @@ class RouterNotifier extends ChangeNotifier {
         GoRoute(
           name: "pages_editar_eliminar_products",
           path: '/pages_editar_eliminar_products',
-          builder: (context, _) => const Pages_editar_eliminar_products(),
+          builder: (context, _) => const PagesEditarEliminarProducts(),
         ),
         GoRoute(
           name: "editar_products",
